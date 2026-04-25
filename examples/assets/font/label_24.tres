@@ -10,5 +10,6 @@ variation_opentype = {
 
 [resource]
 line_spacing = 0.0
+paragraph_spacing = 8.0
 font = SubResource("FontVariation_ovd21")
 font_size = 24

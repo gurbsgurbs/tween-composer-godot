@@ -5,7 +5,9 @@
 
 [sub_resource type="Resource" id="Resource_3hg3u"]
 resource_local_to_scene = true
+resource_name = "Go right"
 script = ExtResource("2_058x2")
+nickname = "Go right"
 easing = 2
 property_name = "position"
 target_value = Vector3(256, 0, 0)
@@ -13,7 +15,9 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
 [sub_resource type="Resource" id="Resource_e4q71"]
 resource_local_to_scene = true
+resource_name = "Go left"
 script = ExtResource("2_058x2")
+nickname = "Go left"
 easing = 2
 property_name = "position"
 target_value = Vector3(-256, 0, 0)

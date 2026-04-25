@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="TweenConfigCollection" format=3 uid="uid://do3xetvttgip"]
+
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_config_collection_resource.gd" id="1_jj8cs"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_item_resource.gd" id="2_qk6iw"]
+
+[sub_resource type="Resource" id="Resource_2dlr4"]
+resource_local_to_scene = true
+resource_name = "Go right"
+script = ExtResource("2_qk6iw")
+nickname = "Go right"
+easing = 2
+relative_value = false
+property_name = "position"
+target_value = Vector3(352, 400, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_2xvdi"]
+resource_local_to_scene = true
+resource_name = "Go left"
+script = ExtResource("2_qk6iw")
+nickname = "Go left"
+easing = 2
+relative_value = false
+property_name = "position"
+target_value = Vector3(96, 400, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[resource]
+resource_local_to_scene = true
+resource_name = "Left/Right 480px (absolute)"
+script = ExtResource("1_jj8cs")
+tween_name = "Left/Right 480px (absolute)"
+tween_collection = Array[ExtResource("2_qk6iw")]([SubResource("Resource_2dlr4"), SubResource("Resource_2xvdi")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"

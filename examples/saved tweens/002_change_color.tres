@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="TweenConfigCollection" format=3 uid="uid://bw136pknydla6"]
+
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_config_collection_resource.gd" id="1_dd3sx"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_item_resource.gd" id="2_hfr7q"]
+
+[sub_resource type="Resource" id="Resource_2xvdi"]
+resource_local_to_scene = true
+resource_name = "Blue"
+script = ExtResource("2_hfr7q")
+nickname = "Blue"
+easing = 2
+relative_value = false
+tween_property = 3
+property_name = "modulate"
+target_value = Color(0.2250455, 0.53062654, 0.66454685, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_dl8wn"]
+resource_local_to_scene = true
+resource_name = "Orange"
+script = ExtResource("2_hfr7q")
+nickname = "Orange"
+easing = 2
+relative_value = false
+tween_property = 3
+property_name = "modulate"
+target_value = Color(0.66, 0.43494004, 0.2244, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_7vtjs"]
+resource_local_to_scene = true
+resource_name = "Green"
+script = ExtResource("2_hfr7q")
+nickname = "Green"
+easing = 2
+relative_value = false
+tween_property = 3
+property_name = "modulate"
+target_value = Color(0.2244, 0.66, 0.32604003, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_d31av"]
+resource_local_to_scene = true
+resource_name = "White"
+script = ExtResource("2_hfr7q")
+nickname = "White"
+easing = 2
+relative_value = false
+tween_property = 3
+property_name = "modulate"
+target_value = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[resource]
+resource_local_to_scene = true
+resource_name = "Change color"
+script = ExtResource("1_dd3sx")
+tween_name = "Change color"
+tween_collection = Array[ExtResource("2_hfr7q")]([SubResource("Resource_2xvdi"), SubResource("Resource_dl8wn"), SubResource("Resource_7vtjs"), SubResource("Resource_d31av")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"

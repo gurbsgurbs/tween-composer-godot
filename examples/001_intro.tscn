@@ -6,6 +6,8 @@
 [ext_resource type="Resource" uid="uid://xpm0221byhu4" path="res://examples/saved tweens/001_left_right_480.tres" id="3_e5yy1"]
 [ext_resource type="LabelSettings" uid="uid://cx5bk6kp3uxpd" path="res://examples/assets/font/label_24.tres" id="5_rovbd"]
 [ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="6_ovd21"]
+[ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="7_3hg3u"]
+[ext_resource type="Texture2D" uid="uid://134tn44ubqdt" path="res://examples/assets/shapes/shape_128_cross_25_r_o.png" id="8_e4q71"]
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]
 base_font = ExtResource("6_ovd21")
@@ -49,22 +51,23 @@ offset_left = 32.0
 offset_top = 96.0
 offset_right = 688.0
 offset_bottom = 164.0
-text = "Reusable tween animation, shown here with different
-time and loop settings:"
+text = "Your tween configurations can be saved, and reused. The examples here show Tween Composers with different time and loop settings:"
 label_settings = ExtResource("5_rovbd")
+autowrap_mode = 3
 
 [node name="Properties1" type="Label" parent="." unique_id=344616555]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 192.0
+offset_top = 256.0
 offset_right = 672.0
-offset_bottom = 241.0
+offset_bottom = 305.0
 text = "autostart, no delay.
 2 sec. duration, infinite loops"
 label_settings = ExtResource("1_rovbd")
+vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140211992]
-position = Vector2(96, 224)
+position = Vector2(96, 288)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_qgkk3")
 
@@ -77,16 +80,17 @@ metadata/_custom_type_script = "uid://bepnihd7w544x"
 [node name="Properties2" type="Label" parent="." unique_id=179075784]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 288.0
+offset_top = 352.0
 offset_right = 672.0
-offset_bottom = 337.0
+offset_bottom = 401.0
 text = "autostart, no delay.
 4 sec. duration, infinite loops"
+vertical_alignment = 1
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1195788050]
-position = Vector2(96, 320)
+position = Vector2(96, 384)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_qgkk3")
+texture = ExtResource("7_3hg3u")
 
 [node name="TweenComposer" type="Node" parent="Sprite2D2" unique_id=1720411859]
 script = ExtResource("2_rovbd")
@@ -97,16 +101,17 @@ metadata/_custom_type_script = "uid://bepnihd7w544x"
 [node name="Properties3" type="Label" parent="." unique_id=592556169]
 layout_mode = 0
 offset_left = 448.0
-offset_top = 384.0
-offset_right = 634.0
-offset_bottom = 407.0
+offset_top = 448.0
+offset_right = 643.0
+offset_bottom = 497.0
 text = "autostart, 4 second delay
 2 sec. duration, 2 loops"
+vertical_alignment = 1
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=575466747]
-position = Vector2(96, 416)
+position = Vector2(96, 480)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_qgkk3")
+texture = ExtResource("8_e4q71")
 
 [node name="TweenComposer" type="Node" parent="Sprite2D3" unique_id=1710534339]
 script = ExtResource("2_rovbd")

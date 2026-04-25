@@ -1,0 +1,277 @@
+[gd_scene format=3 uid="uid://3dn58mg4emol"]
+
+[ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="1_7d80e"]
+[ext_resource type="LabelSettings" uid="uid://cx5bk6kp3uxpd" path="res://examples/assets/font/label_24.tres" id="2_d0n4b"]
+[ext_resource type="LabelSettings" uid="uid://dc4fkqy5dr5cv" path="res://examples/assets/font/label_16.tres" id="3_ao5yn"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="5_3qvqb"]
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_config_collection_resource.gd" id="6_d0n4b"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_item_resource.gd" id="7_ao5yn"]
+[ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="7_o1t3j"]
+
+[sub_resource type="FontVariation" id="FontVariation_ovd21"]
+base_font = ExtResource("1_7d80e")
+variation_opentype = {
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ieo45"]
+line_spacing = 0.0
+font = SubResource("FontVariation_ovd21")
+font_size = 40
+
+[sub_resource type="Resource" id="Resource_qtu6l"]
+resource_local_to_scene = true
+resource_name = "Right"
+script = ExtResource("7_ao5yn")
+nickname = "Right"
+property_name = "position"
+target_value = Vector3(256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_3qvqb"]
+resource_local_to_scene = true
+resource_name = "Scale Up"
+script = ExtResource("7_ao5yn")
+nickname = "Scale Up"
+relative_value = false
+tween_property = 2
+property_name = "scale"
+target_value = Vector3(0.75, 0.75, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_m6ydn"]
+resource_local_to_scene = true
+resource_name = "Left"
+script = ExtResource("7_ao5yn")
+nickname = "Left"
+property_name = "position"
+target_value = Vector3(-256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_o1t3j"]
+resource_local_to_scene = true
+resource_name = "Scale Down"
+script = ExtResource("7_ao5yn")
+nickname = "Scale Down"
+relative_value = false
+tween_property = 2
+property_name = "scale"
+target_value = Vector3(0.5, 0.5, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_2u4so"]
+resource_local_to_scene = true
+resource_name = "Move-and-scale (not parallel)"
+script = ExtResource("6_d0n4b")
+tween_name = "Move-and-scale (not parallel)"
+tween_collection = Array[ExtResource("7_ao5yn")]([SubResource("Resource_qtu6l"), SubResource("Resource_3qvqb"), SubResource("Resource_m6ydn"), SubResource("Resource_o1t3j")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="Resource" id="Resource_d0n4b"]
+resource_local_to_scene = true
+resource_name = "Right"
+script = ExtResource("7_ao5yn")
+nickname = "Right"
+property_name = "position"
+target_value = Vector3(256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_ao5yn"]
+resource_local_to_scene = true
+resource_name = "Scale Up"
+script = ExtResource("7_ao5yn")
+nickname = "Scale Up"
+parallel = true
+relative_value = false
+tween_property = 2
+property_name = "scale"
+target_value = Vector3(0.75, 0.75, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_frynk"]
+resource_local_to_scene = true
+resource_name = "Left"
+script = ExtResource("7_ao5yn")
+nickname = "Left"
+property_name = "position"
+target_value = Vector3(-256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_124ip"]
+resource_local_to_scene = true
+resource_name = "Scale Down"
+script = ExtResource("7_ao5yn")
+nickname = "Scale Down"
+parallel = true
+relative_value = false
+tween_property = 2
+property_name = "scale"
+target_value = Vector3(0.5, 0.5, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_thuqs"]
+resource_local_to_scene = true
+resource_name = "Move-and-scale (parallel)"
+script = ExtResource("6_d0n4b")
+tween_name = "Move-and-scale (parallel)"
+tween_collection = Array[ExtResource("7_ao5yn")]([SubResource("Resource_d0n4b"), SubResource("Resource_ao5yn"), SubResource("Resource_frynk"), SubResource("Resource_124ip")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="Resource" id="Resource_l0sn2"]
+resource_local_to_scene = true
+resource_name = "Right"
+script = ExtResource("7_ao5yn")
+nickname = "Right"
+property_name = "position"
+target_value = Vector3(256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_7d80e"]
+resource_local_to_scene = true
+resource_name = "Scale Up"
+script = ExtResource("7_ao5yn")
+nickname = "Scale Up"
+parallel = true
+duration_ratio = 0.5
+relative_value = false
+tween_property = 2
+property_name = "scale"
+target_value = Vector3(0.75, 0.75, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_k8csc"]
+resource_local_to_scene = true
+resource_name = "Left"
+script = ExtResource("7_ao5yn")
+nickname = "Left"
+property_name = "position"
+target_value = Vector3(-256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_o533q"]
+resource_local_to_scene = true
+resource_name = "Scale Down"
+script = ExtResource("7_ao5yn")
+nickname = "Scale Down"
+parallel = true
+duration_ratio = 0.5
+relative_value = false
+tween_property = 2
+property_name = "scale"
+target_value = Vector3(0.5, 0.5, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_cqooq"]
+resource_local_to_scene = true
+resource_name = "Move-and-scale (parallel-ratio)"
+script = ExtResource("6_d0n4b")
+tween_name = "Move-and-scale (parallel-ratio)"
+tween_collection = Array[ExtResource("7_ao5yn")]([SubResource("Resource_l0sn2"), SubResource("Resource_7d80e"), SubResource("Resource_k8csc"), SubResource("Resource_o533q")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[node name="001Intro" type="Control" unique_id=1877161272]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="SizeCheck" type="ColorRect" parent="." unique_id=733821207]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 720.0
+color = Color(0.38216856, 0.20667574, 0.24634716, 1)
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="." unique_id=391862351]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 688.0
+offset_bottom = 100.0
+text = "Parallel tween steps"
+label_settings = SubResource("LabelSettings_ieo45")
+
+[node name="Description" type="Label" parent="." unique_id=805527058]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 688.0
+offset_bottom = 164.0
+text = "The tween steps can be set to parallel, and will animate at the same time as the previous non-parallel step.
+You can tweak the duration ratio to make the parallel steps move faster in that animation section."
+label_settings = ExtResource("2_d0n4b")
+autowrap_mode = 3
+
+[node name="Description2" type="Label" parent="." unique_id=309911533]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 576.0
+offset_right = 688.0
+offset_bottom = 651.0
+text = "Note that the non-parallel animation plays faster due to the total duration being divided by 4 \"sections\" (right / grow / left / shrink) instead of two (right+grow / left+shrink). "
+label_settings = ExtResource("3_ao5yn")
+autowrap_mode = 3
+
+[node name="Properties1" type="Label" parent="." unique_id=344616555]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 288.0
+offset_right = 672.0
+offset_bottom = 337.0
+text = "scale tween not parallel"
+label_settings = ExtResource("3_ao5yn")
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140211992]
+position = Vector2(96, 320)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_o1t3j")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D" unique_id=783221572]
+script = ExtResource("5_3qvqb")
+tween_configuration = SubResource("Resource_2u4so")
+tween_duration = 4.0
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="Properties2" type="Label" parent="." unique_id=179075784]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 384.0
+offset_right = 672.0
+offset_bottom = 433.0
+text = "scale tween parallel
+same duration ratio (1.0)"
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1195788050]
+position = Vector2(96, 416)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_o1t3j")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D2" unique_id=1720411859]
+script = ExtResource("5_3qvqb")
+tween_configuration = SubResource("Resource_thuqs")
+tween_duration = 4.0
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="Properties3" type="Label" parent="." unique_id=2042401843]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 480.0
+offset_right = 672.0
+offset_bottom = 529.0
+text = "scale tween parallel
+duration ratio halved (0.5)"
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=801264031]
+position = Vector2(96, 512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_o1t3j")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D3" unique_id=1008377195]
+script = ExtResource("5_3qvqb")
+tween_configuration = SubResource("Resource_cqooq")
+tween_duration = 4.0
+metadata/_custom_type_script = "uid://bepnihd7w544x"
