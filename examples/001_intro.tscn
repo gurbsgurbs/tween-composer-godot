@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://7oont6myktf3"]
+
+[ext_resource type="Texture2D" uid="uid://ni34g8bdk5ub" path="res://examples/assets/shapes/shape_128_circle_o.png" id="1_qgkk3"]
+[ext_resource type="LabelSettings" uid="uid://dc4fkqy5dr5cv" path="res://examples/assets/font/label_16.tres" id="1_rovbd"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="2_rovbd"]
+[ext_resource type="Resource" uid="uid://xpm0221byhu4" path="res://examples/saved tweens/001_left_right_480.tres" id="3_e5yy1"]
+[ext_resource type="LabelSettings" uid="uid://cx5bk6kp3uxpd" path="res://examples/assets/font/label_24.tres" id="5_rovbd"]
+[ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="6_ovd21"]
+
+[sub_resource type="FontVariation" id="FontVariation_ovd21"]
+base_font = ExtResource("6_ovd21")
+variation_opentype = {
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ieo45"]
+line_spacing = 0.0
+font = SubResource("FontVariation_ovd21")
+font_size = 40
+
+[node name="001Intro" type="Control" unique_id=1877161272]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="SizeCheck" type="ColorRect" parent="." unique_id=733821207]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 720.0
+color = Color(0.38216856, 0.20667574, 0.24634716, 1)
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="." unique_id=391862351]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 688.0
+offset_bottom = 100.0
+text = "Tweens as saved resources"
+label_settings = SubResource("LabelSettings_ieo45")
+
+[node name="Description" type="Label" parent="." unique_id=805527058]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 688.0
+offset_bottom = 164.0
+text = "Reusable tween animation, shown here with different
+time and loop settings:"
+label_settings = ExtResource("5_rovbd")
+
+[node name="Properties1" type="Label" parent="." unique_id=344616555]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 672.0
+offset_bottom = 241.0
+text = "autostart, no delay.
+2 sec. duration, infinite loops"
+label_settings = ExtResource("1_rovbd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140211992]
+position = Vector2(96, 224)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qgkk3")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D" unique_id=783221572]
+script = ExtResource("2_rovbd")
+tween_configuration = ExtResource("3_e5yy1")
+tween_duration = 2.0
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="Properties2" type="Label" parent="." unique_id=179075784]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 288.0
+offset_right = 672.0
+offset_bottom = 337.0
+text = "autostart, no delay.
+4 sec. duration, infinite loops"
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1195788050]
+position = Vector2(96, 320)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qgkk3")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D2" unique_id=1720411859]
+script = ExtResource("2_rovbd")
+tween_configuration = ExtResource("3_e5yy1")
+tween_duration = 4.0
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="Properties3" type="Label" parent="." unique_id=592556169]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 384.0
+offset_right = 634.0
+offset_bottom = 407.0
+text = "autostart, 4 second delay
+2 sec. duration, 2 loops"
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=575466747]
+position = Vector2(96, 416)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qgkk3")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D3" unique_id=1710534339]
+script = ExtResource("2_rovbd")
+tween_configuration = ExtResource("3_e5yy1")
+tween_duration = 2.0
+autostart_delay = 2.0
+loop_repetitions = 2
+metadata/_custom_type_script = "uid://bepnihd7w544x"

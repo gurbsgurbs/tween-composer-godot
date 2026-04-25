@@ -1,0 +1,14 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cx5bk6kp3uxpd"]
+
+[ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="1_d1bvt"]
+
+[sub_resource type="FontVariation" id="FontVariation_ovd21"]
+base_font = ExtResource("1_d1bvt")
+variation_opentype = {
+2003265652: 700
+}
+
+[resource]
+line_spacing = 0.0
+font = SubResource("FontVariation_ovd21")
+font_size = 24
