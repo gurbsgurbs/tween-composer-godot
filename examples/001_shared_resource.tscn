@@ -16,14 +16,6 @@
 script/source = "extends Control
 
 @onready var tween_composer: TweenComposer = $Sprite2D4/TweenComposer
-
-
-func _on_check_button_button_down() -> void:
-	tween_composer.play_tween()
-
-
-func _on_check_button_button_up() -> void:
-	tween_composer.pause_tween()
 "
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]
@@ -197,6 +189,3 @@ offset_top = 608.0
 offset_right = 529.0
 offset_bottom = 639.0
 text = "Play"
-
-[connection signal="button_down" from="CheckButton" to="." method="_on_check_button_button_down"]
-[connection signal="button_up" from="CheckButton" to="." method="_on_check_button_button_up"]

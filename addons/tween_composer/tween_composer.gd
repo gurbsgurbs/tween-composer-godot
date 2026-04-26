@@ -28,9 +28,6 @@ signal trigger_fired(trigger_name)
 
 @export_group("Tween settings")
 
-@export var hide_parent_before_tween_plays: bool = false
-
-
 ## Total duration of tween, in seconds. [br]
 ## Tip: Change the duration_ratio in each [TweenConfigStep] to adjust the time of their individual tween.
 @export var tween_duration: float = 1.0:
@@ -55,6 +52,19 @@ signal trigger_fired(trigger_name)
 ## How many times the tween will loop before it stops. Use zero for infinite.
 @export var loop_repetitions: int = 0
 
+
+@export_subgroup("Parent settings")
+
+## Sets if the parent entity will be hidden before the tween animatio begins. [br]
+## Useful if the tween has an intro animation (fade-in, scale from zero, etc.).
+@export var hide_parent_before_tween_start: bool = false
+
+## Sets if the parent entity will be removed when the tween is ends. [br]
+## The tween is considered "finished" after all loops have played (therefore if [loop_repetitions] 
+## is set to zero, the animation will never end.
+@export var delete_parent_after_tween_end:bool = false
+
+
 @export_subgroup("Other settings")
 @export var ignore_time_scale: bool = false
 @export var set_pause_mode: Tween.TweenPauseMode = Tween.TweenPauseMode.TWEEN_PAUSE_BOUND
@@ -73,7 +83,7 @@ func _ready() -> void:
 	# Get parent
 	parent_object = get_parent()
 	
-	if hide_parent_before_tween_plays:
+	if hide_parent_before_tween_start:
 		_hide_parent()
 	
 	# Start the tween loop
@@ -194,6 +204,9 @@ func compose_tween() -> void:
 				emit_signal.bind("trigger_fired", trigger)
 			)
 	
+	# Connects the method to the function
+	tween.connect("finished", _on_tween_finished)
+	
 	# Stops the tween, as this is just the compose_tween function!
 	tween.stop()
 
@@ -262,4 +275,12 @@ func _show_parent() -> void:
 	else:
 		parent_object.show()
 
+func _delete_parent_entity() -> void:
+	parent_object.set_process(false)
+	parent_object.queue_free()
+
 #endregion
+
+func _on_tween_finished() -> void:
+	if delete_parent_after_tween_end:
+		_delete_parent_entity()
