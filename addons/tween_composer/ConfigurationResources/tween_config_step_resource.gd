@@ -1,14 +1,16 @@
 @tool
 class_name TweenConfigStep
 extends Resource
+## TweenConfigStep is the resource that houses all the configuration of each tween instruction 
+## for the Tween Composer to work on the tween.
 
-##
-## TODO: Write the documentation for this class.                                                                             
-##
+#region Property options to be added to the inspector UI
 
-
+## The different properties that are added to the "Property Name" dropdown in the inspector. 
+## It's a list of popular options, that can grow over time as needed.
 enum TweenOptions { POSITION, ROTATION, SCALE, MODULATE, OTHER }
 
+## The dictionary that contains the peculiarities of each of the options on [TweenOptions].
 const PROPERTY_RULES: Dictionary = {
 	TweenOptions.POSITION: {"path": "position", "default": Vector3.ZERO, "type": TYPE_VECTOR3},
 	TweenOptions.ROTATION: {"path": "rotation_degrees", "default": Vector3.ZERO, "type": TYPE_VECTOR3},
@@ -33,21 +35,22 @@ const PROPERTY_RULES: Dictionary = {
 @export var active: bool = true
 
 @export_group("Tween parameters")
-@export var transition: Tween.TransitionType = Tween.TransitionType.TRANS_QUAD
-@export var easing: Tween.EaseType = Tween.EaseType.EASE_IN
-@export var parallel: bool = false
+@export var transition: Tween.TransitionType = Tween.TransitionType.TRANS_QUAD ## What transition will be used for this step.
+@export var easing: Tween.EaseType = Tween.EaseType.EASE_IN ## What easing will be used for this step.
+@export var parallel: bool = false ## Is this a step that will run in parallel with the previous one?
 @export var duration_ratio: float = 1.0 ## How faster will this tween run, compared to others in the [TweenConfigCollection]. If this is a parallel tween, its duration_ratio shouldn't be higher than its non-parallel tween partner.
 @export var duration_delay: float = 0.0 ## How long this step should wait before firing. Also uses the ratio value (e.g. 0.5 for half-time). Also works with parallel steps.
 
 @export_subgroup("Triggers")
-@export var send_triggers:Array[String]
+@export var send_triggers:Array[String] ## Sends each string in this array as signals via the [signal TweenComposer.signal_fired]
 
 @export_group("Tween Property")
-@export var relative_value: bool = true
+@export var relative_value: bool = true ## Is the property's value change absolute ("move to position 100 on X") or relative ("move by 100 pixels to the right")
 
 var property_name: String
 var target_value: Variant = 0.0
 
+## What property will be changed in this tween step.
 @export var tween_property: TweenOptions:
 	set(value):
 		tween_property = value

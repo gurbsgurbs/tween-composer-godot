@@ -16,6 +16,9 @@
 script/source = "extends Control
 
 @onready var tween_composer: TweenComposer = $Sprite2D4/TweenComposer
+
+func _on_button_pressed() -> void:
+	tween_composer.play_tween()
 "
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]
@@ -182,10 +185,12 @@ autostart_delay = 2.0
 loop_repetitions = 2
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
-[node name="CheckButton" type="CheckButton" parent="." unique_id=217708055]
+[node name="Button" type="Button" parent="." unique_id=1754023803]
 layout_mode = 0
 offset_left = 448.0
 offset_top = 608.0
-offset_right = 529.0
+offset_right = 546.0
 offset_bottom = 639.0
-text = "Play"
+text = "Start tween"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

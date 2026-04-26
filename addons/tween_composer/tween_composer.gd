@@ -1,8 +1,6 @@
 @icon("uid://dwgblxlt6mirn")
 class_name TweenComposer
 extends Node
-
-
 ## Attach this node to any other node to tween its properties it.
 ## It can be used in 2D, 3D and Control nodes. [br]
 ## The Tweener uses a [TweenConfigCollection] resource to compose a tween and launch it. [br]
@@ -12,6 +10,7 @@ extends Node
 ## * Dropdown for basic properties (position, rotation, scale, color/opacity). [br]
 ## * An "Other" field for changing a custom property (or paths, like "position:x".  [br]
 ## * Sending triggers as a signal so other nodes can be connected and interact with the tween.
+## * "Hide before" and "Delete after" tweens.
 ##
 ## TODO: Known issue: Fix bug of parallel and delayed tween property if it is a relative as well (currently throws an error to warn the developer)
 ## TODO: Improvement: set_loops() is said to be buggy (or at least less sync-reliable). Investigate further.
@@ -42,16 +41,15 @@ signal trigger_fired(trigger_name)
 	set(value):
 		autostart_delay = max(0.0, value) # Blocks negative numbers
 
-## Sets which process will be used for the tween.
-## Use "Physics" if the tween requires frame-independent precision, better synchrony.
-@export_enum("Idle", "Physics") var process_callback: int = 0
-
 ## Sets if the tween will be looped, or one-shot.
 @export var loop: bool = true
 
 ## How many times the tween will loop before it stops. Use zero for infinite.
 @export var loop_repetitions: int = 0
 
+## Tween information is usually deleted after the tween is finished.
+## Set this to true if you intend to play this tween again after it stops.
+@export var persist_tween_information: bool = false
 
 @export_subgroup("Parent settings")
 
@@ -68,6 +66,11 @@ signal trigger_fired(trigger_name)
 @export_subgroup("Other settings")
 @export var ignore_time_scale: bool = false
 @export var set_pause_mode: Tween.TweenPauseMode = Tween.TweenPauseMode.TWEEN_PAUSE_BOUND
+
+## Sets which process will be used for the tween.
+## Use "Physics" if the tween requires frame-independent precision, better synchrony.
+@export_enum("Idle", "Physics") var process_callback: int = 0
+
 
 var parent_object: Node
 
@@ -282,5 +285,7 @@ func _delete_parent_entity() -> void:
 #endregion
 
 func _on_tween_finished() -> void:
+	if persist_tween_information:
+		tween.stop()
 	if delete_parent_after_tween_end:
 		_delete_parent_entity()

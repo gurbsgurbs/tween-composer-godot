@@ -1,7 +1,6 @@
 @tool
 class_name TweenConfigCollection
 extends Resource
-
 ## TweenConfigCollection is a simple resource that bundles all the [TweenConfigItem]
 ## resources that will be tweened.
 
