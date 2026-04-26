@@ -181,8 +181,10 @@ texture = ExtResource("9_t1lj7")
 script = ExtResource("5_caqab")
 tween_configuration = SubResource("Resource_3ig46")
 tween_duration = 2.0
+autostart = false
 autostart_delay = 2.0
 loop_repetitions = 2
+persist_tween_information = true
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Button" type="Button" parent="." unique_id=1754023803]
