@@ -1,5 +1,5 @@
 @tool
-class_name TweenConfigItem
+class_name TweenConfigStep
 extends Resource
 
 ##

@@ -52,7 +52,7 @@ offset_left = 32.0
 offset_top = 96.0
 offset_right = 688.0
 offset_bottom = 164.0
-text = "Toggling the \"relative\" boolean in the step configuration item make the properties change based on their current  value."
+text = "Toggling the \"Relative\" boolean in the step configuration makes the properties change based on their current  value."
 label_settings = ExtResource("2_p5isu")
 autowrap_mode = 3
 
@@ -69,11 +69,11 @@ vertical_alignment = 1
 
 [node name="Description2" type="Label" parent="Properties1" unique_id=476085755]
 layout_mode = 0
-offset_left = -416.0
-offset_top = 352.0
+offset_left = -288.0
+offset_top = 320.0
 offset_right = 240.0
-offset_bottom = 427.0
-text = "Note that Relative is TRUE by default. Some properties' behave better if the flag is set to false (e.g. Modulate: You'll likely want the object to change to a specific color, not add/remove RGB)."
+offset_bottom = 395.0
+text = "Note that Relative is TRUE by default. Some properties' behave better if the flag is set to FALSE (e.g. Modulate: You'll likely want the object to change to a specific color, not add/remove RGB)."
 label_settings = ExtResource("3_2dlr4")
 autowrap_mode = 3
 
@@ -125,7 +125,7 @@ autostart_delay = 4.0
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1358329009]
-position = Vector2(64, 560)
+position = Vector2(96, 608)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_2dlr4")
 

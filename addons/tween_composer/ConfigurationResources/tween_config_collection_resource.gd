@@ -15,7 +15,7 @@ extends Resource
 		return tween_name
 
 # Making sure the resources in the array are not linked
-@export var tween_collection: Array[TweenConfigItem]= []:
+@export var tween_collection: Array[TweenConfigStep]= []:
 	set(value):
 		tween_collection = value
 		for item in tween_collection:

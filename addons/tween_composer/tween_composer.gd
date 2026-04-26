@@ -32,7 +32,7 @@ signal trigger_fired(trigger_name)
 
 
 ## Total duration of tween, in seconds. [br]
-## Tip: Change the duration_ratio in each [TweenConfigItem] to adjust the time of their individual tween.
+## Tip: Change the duration_ratio in each [TweenConfigStep] to adjust the time of their individual tween.
 @export var tween_duration: float = 1.0:
 	set(value):
 		tween_duration = max(0.0, value) # Blocks negative numbers
@@ -215,6 +215,7 @@ func pause_tween() -> void:
 ## Plays the tween. If stopped, the tween will play again from the beginning using its current property 
 ## values. If paused, the tween will resume the animation.
 func play_tween() -> void:
+	_show_parent()
 	if _is_tween_valid():
 		tween.play()
 

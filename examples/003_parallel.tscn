@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://dc4fkqy5dr5cv" path="res://examples/assets/font/label_16.tres" id="3_ao5yn"]
 [ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="5_3qvqb"]
 [ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_config_collection_resource.gd" id="6_d0n4b"]
-[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_item_resource.gd" id="7_ao5yn"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_step_resource.gd" id="7_ao5yn"]
 [ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="7_o1t3j"]
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]

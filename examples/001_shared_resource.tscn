@@ -8,6 +8,23 @@
 [ext_resource type="Resource" uid="uid://xpm0221byhu4" path="res://examples/saved tweens/001_left_right_480.tres" id="6_yp7ih"]
 [ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="7_dwiof"]
 [ext_resource type="Texture2D" uid="uid://134tn44ubqdt" path="res://examples/assets/shapes/shape_128_cross_25_r_o.png" id="8_aug1m"]
+[ext_resource type="Texture2D" uid="uid://cwbnr3ay5hw7t" path="res://examples/assets/shapes/shape_128_hexagon_r_o.png" id="9_t1lj7"]
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_config_collection_resource.gd" id="10_caqab"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_step_resource.gd" id="11_yp7ih"]
+
+[sub_resource type="GDScript" id="GDScript_t1lj7"]
+script/source = "extends Control
+
+@onready var tween_composer: TweenComposer = $Sprite2D4/TweenComposer
+
+
+func _on_check_button_button_down() -> void:
+	tween_composer.play_tween()
+
+
+func _on_check_button_button_up() -> void:
+	tween_composer.pause_tween()
+"
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]
 base_font = ExtResource("1_jxprk")
@@ -20,6 +37,34 @@ line_spacing = 0.0
 font = SubResource("FontVariation_ovd21")
 font_size = 40
 
+[sub_resource type="Resource" id="Resource_dwiof"]
+resource_local_to_scene = true
+resource_name = "Go right"
+script = ExtResource("11_yp7ih")
+nickname = "Go right"
+easing = 2
+property_name = "position"
+target_value = Vector3(256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_aug1m"]
+resource_local_to_scene = true
+resource_name = "Go left"
+script = ExtResource("11_yp7ih")
+nickname = "Go left"
+easing = 2
+property_name = "position"
+target_value = Vector3(-256, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_3ig46"]
+resource_local_to_scene = true
+resource_name = "Left/Right 480px"
+script = ExtResource("10_caqab")
+tween_name = "Left/Right 480px"
+tween_collection = Array[ExtResource("11_yp7ih")]([SubResource("Resource_dwiof"), SubResource("Resource_aug1m")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
 [node name="001Intro" type="Control" unique_id=1877161272]
 layout_mode = 3
 anchors_preset = 15
@@ -27,6 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_t1lj7")
 metadata/_edit_lock_ = true
 
 [node name="SizeCheck" type="ColorRect" parent="." unique_id=733821207]
@@ -42,7 +88,7 @@ offset_left = 32.0
 offset_top = 32.0
 offset_right = 688.0
 offset_bottom = 100.0
-text = "Tweens as saved resources"
+text = "Tweens as resources"
 label_settings = SubResource("LabelSettings_ieo45")
 
 [node name="Description" type="Label" parent="." unique_id=805527058]
@@ -51,7 +97,7 @@ offset_left = 32.0
 offset_top = 96.0
 offset_right = 688.0
 offset_bottom = 164.0
-text = "Your tween configurations can be saved, and reused. The examples here show objects sharing the same TweenConfig, but with different time and loop settings:"
+text = "Your tween configurations can be saved as a resource, and reused. The examples here show objects sharing the same TweenConfig, but with different time and loop settings:"
 label_settings = ExtResource("2_uqgog")
 autowrap_mode = 3
 
@@ -120,3 +166,37 @@ tween_duration = 2.0
 autostart_delay = 2.0
 loop_repetitions = 2
 metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="Properties4" type="Label" parent="." unique_id=1988469648]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 544.0
+offset_right = 643.0
+offset_bottom = 593.0
+text = "no autostart
+1 sec. duration, infinite loops"
+vertical_alignment = 1
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=25941154]
+position = Vector2(96, 576)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_t1lj7")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D4" unique_id=1729629052]
+script = ExtResource("5_caqab")
+tween_configuration = SubResource("Resource_3ig46")
+tween_duration = 2.0
+autostart_delay = 2.0
+loop_repetitions = 2
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="CheckButton" type="CheckButton" parent="." unique_id=217708055]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 608.0
+offset_right = 529.0
+offset_bottom = 639.0
+text = "Play"
+
+[connection signal="button_down" from="CheckButton" to="." method="_on_check_button_button_down"]
+[connection signal="button_up" from="CheckButton" to="." method="_on_check_button_button_up"]

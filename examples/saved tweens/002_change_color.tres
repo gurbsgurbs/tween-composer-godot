@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TweenConfigCollection" format=3 uid="uid://bw136pknydla6"]
 
 [ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_config_collection_resource.gd" id="1_dd3sx"]
-[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_item_resource.gd" id="2_hfr7q"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_step_resource.gd" id="2_hfr7q"]
 
 [sub_resource type="Resource" id="Resource_2xvdi"]
 resource_local_to_scene = true
