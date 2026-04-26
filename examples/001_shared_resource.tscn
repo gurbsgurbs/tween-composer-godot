@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://7oont6myktf3"]
 
-[ext_resource type="Texture2D" uid="uid://ni34g8bdk5ub" path="res://examples/assets/shapes/shape_128_circle_o.png" id="1_qgkk3"]
-[ext_resource type="LabelSettings" uid="uid://dc4fkqy5dr5cv" path="res://examples/assets/font/label_16.tres" id="1_rovbd"]
-[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="2_rovbd"]
-[ext_resource type="Resource" uid="uid://xpm0221byhu4" path="res://examples/saved tweens/001_left_right_480.tres" id="3_e5yy1"]
-[ext_resource type="LabelSettings" uid="uid://cx5bk6kp3uxpd" path="res://examples/assets/font/label_24.tres" id="5_rovbd"]
-[ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="6_ovd21"]
-[ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="7_3hg3u"]
-[ext_resource type="Texture2D" uid="uid://134tn44ubqdt" path="res://examples/assets/shapes/shape_128_cross_25_r_o.png" id="8_e4q71"]
+[ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="1_jxprk"]
+[ext_resource type="LabelSettings" uid="uid://cx5bk6kp3uxpd" path="res://examples/assets/font/label_24.tres" id="2_uqgog"]
+[ext_resource type="LabelSettings" uid="uid://dc4fkqy5dr5cv" path="res://examples/assets/font/label_16.tres" id="3_wm8up"]
+[ext_resource type="Texture2D" uid="uid://ni34g8bdk5ub" path="res://examples/assets/shapes/shape_128_circle_o.png" id="4_t1lj7"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="5_caqab"]
+[ext_resource type="Resource" uid="uid://xpm0221byhu4" path="res://examples/saved tweens/001_left_right_480.tres" id="6_yp7ih"]
+[ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="7_dwiof"]
+[ext_resource type="Texture2D" uid="uid://134tn44ubqdt" path="res://examples/assets/shapes/shape_128_cross_25_r_o.png" id="8_aug1m"]
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]
-base_font = ExtResource("6_ovd21")
+base_font = ExtResource("1_jxprk")
 variation_opentype = {
 2003265652: 700
 }
@@ -51,8 +51,8 @@ offset_left = 32.0
 offset_top = 96.0
 offset_right = 688.0
 offset_bottom = 164.0
-text = "Your tween configurations can be saved, and reused. The examples here show Tween Composers with different time and loop settings:"
-label_settings = ExtResource("5_rovbd")
+text = "Your tween configurations can be saved, and reused. The examples here show objects sharing the same TweenConfig, but with different time and loop settings:"
+label_settings = ExtResource("2_uqgog")
 autowrap_mode = 3
 
 [node name="Properties1" type="Label" parent="." unique_id=344616555]
@@ -63,17 +63,17 @@ offset_right = 672.0
 offset_bottom = 305.0
 text = "autostart, no delay.
 2 sec. duration, infinite loops"
-label_settings = ExtResource("1_rovbd")
+label_settings = ExtResource("3_wm8up")
 vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140211992]
 position = Vector2(96, 288)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_qgkk3")
+texture = ExtResource("4_t1lj7")
 
 [node name="TweenComposer" type="Node" parent="Sprite2D" unique_id=783221572]
-script = ExtResource("2_rovbd")
-tween_configuration = ExtResource("3_e5yy1")
+script = ExtResource("5_caqab")
+tween_configuration = ExtResource("6_yp7ih")
 tween_duration = 2.0
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
@@ -90,11 +90,11 @@ vertical_alignment = 1
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1195788050]
 position = Vector2(96, 384)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_3hg3u")
+texture = ExtResource("7_dwiof")
 
 [node name="TweenComposer" type="Node" parent="Sprite2D2" unique_id=1720411859]
-script = ExtResource("2_rovbd")
-tween_configuration = ExtResource("3_e5yy1")
+script = ExtResource("5_caqab")
+tween_configuration = ExtResource("6_yp7ih")
 tween_duration = 4.0
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
@@ -111,11 +111,11 @@ vertical_alignment = 1
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=575466747]
 position = Vector2(96, 480)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_e4q71")
+texture = ExtResource("8_aug1m")
 
 [node name="TweenComposer" type="Node" parent="Sprite2D3" unique_id=1710534339]
-script = ExtResource("2_rovbd")
-tween_configuration = ExtResource("3_e5yy1")
+script = ExtResource("5_caqab")
+tween_configuration = ExtResource("6_yp7ih")
 tween_duration = 2.0
 autostart_delay = 2.0
 loop_repetitions = 2

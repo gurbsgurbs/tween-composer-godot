@@ -101,7 +101,7 @@ looping from then on."
 vertical_alignment = 1
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1195788050]
-position = Vector2(480, 512)
+position = Vector2(128, 448)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_2xvdi")
 
@@ -113,7 +113,7 @@ autostart_delay = 4.0
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=135483835]
-position = Vector2(576, 512)
+position = Vector2(64, 384)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_2xvdi")
 
