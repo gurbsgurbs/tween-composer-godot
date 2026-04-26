@@ -61,7 +61,7 @@ signal trigger_fired(trigger_name)
 
 var parent_object: Node
 
-var tween: Tween = Tween.new()
+var tween: Tween
 
 ## A Dictionary that stores all the initial property values, to be restored if [method reset_tween] is called.
 var _initial_values: Dictionary
