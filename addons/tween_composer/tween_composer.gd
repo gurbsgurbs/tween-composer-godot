@@ -28,6 +28,9 @@ signal trigger_fired(trigger_name)
 
 @export_group("Tween settings")
 
+@export var hide_parent_before_tween_plays: bool = false
+
+
 ## Total duration of tween, in seconds. [br]
 ## Tip: Change the duration_ratio in each [TweenConfigItem] to adjust the time of their individual tween.
 @export var tween_duration: float = 1.0:
@@ -58,7 +61,7 @@ signal trigger_fired(trigger_name)
 
 var parent_object: Node
 
-var tween: Tween
+var tween: Tween = Tween.new()
 
 ## A Dictionary that stores all the initial property values, to be restored if [method reset_tween] is called.
 var _initial_values: Dictionary
@@ -69,11 +72,16 @@ var _initial_values: Dictionary
 func _ready() -> void:
 	# Get parent
 	parent_object = get_parent()
+	
+	if hide_parent_before_tween_plays:
+		_hide_parent()
+	
 	# Start the tween loop
 	compose_tween()
 	if autostart:
 		if autostart_delay > 0.0:
 			await get_tree().create_timer(autostart_delay).timeout
+		_show_parent()
 		play_tween()
 
 
@@ -228,6 +236,10 @@ func _kill_tween() -> void:
 	if _is_tween_valid():
 		tween.kill()
 
+#endregion
+
+
+#region Utility functions
 
 ## Checks if the tween in the TweenComposer is valid. Returns a warning if false.
 func _is_tween_valid() -> bool:
@@ -236,5 +248,17 @@ func _is_tween_valid() -> bool:
 	else:
 		push_warning(str(parent_object.name) + ": TweenComposer doesn't have an active tween.")
 		return false
+
+func _hide_parent() -> void:
+	if parent_object is Control:
+				parent_object.modulate = Color(1.0, 1.0, 1.0, 0.0)
+	else:
+		parent_object.hide()
+
+func _show_parent() -> void:
+	if parent_object is Control:
+		parent_object.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	else:
+		parent_object.show()
 
 #endregion
