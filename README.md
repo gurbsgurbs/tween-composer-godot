@@ -5,7 +5,7 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-A tool for creating tween animations using the inspector tab in Godot. It works in 2D, 3D and UI objects!
+A tool for creating tween animations using the inspector tab in Godot. It works on 2D, 3D and UI objects!
 ## Features
 
 - Tween configurations can be saved as resources and reused in different entities.
