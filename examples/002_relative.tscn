@@ -52,7 +52,7 @@ offset_left = 32.0
 offset_top = 96.0
 offset_right = 688.0
 offset_bottom = 164.0
-text = "Toggling the \"Relative\" boolean in the step configuration makes the properties change based on their current  value."
+text = "Enabling the \"Relative\" boolean in the step configuration makes the properties change based on their current  value."
 label_settings = ExtResource("2_p5isu")
 autowrap_mode = 3
 
@@ -73,7 +73,7 @@ offset_left = -288.0
 offset_top = 320.0
 offset_right = 240.0
 offset_bottom = 395.0
-text = "Note that Relative is TRUE by default. Some properties' behave better if the flag is set to FALSE (e.g. Modulate: You'll likely want the object to change to a specific color, not add/remove RGB)."
+text = "Note that Relative is TRUE by default. Some properties behave better if the flag is set to FALSE (e.g. Modulate: You'll likely want the object to change to a specific color, not add/remove RGB)."
 label_settings = ExtResource("3_2dlr4")
 autowrap_mode = 3
 

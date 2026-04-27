@@ -92,7 +92,7 @@ offset_left = 32.0
 offset_top = 96.0
 offset_right = 688.0
 offset_bottom = 164.0
-text = "Your tween configurations can be saved as a resource, and reused. The examples here show objects sharing the same TweenConfig, but with different time and loop settings:"
+text = "Your tween configurations can be saved as a resource, and reused. The examples here show objects sharing the same configuration, but with different time and loop settings:"
 label_settings = ExtResource("2_uqgog")
 autowrap_mode = 3
 
@@ -169,7 +169,7 @@ offset_top = 544.0
 offset_right = 643.0
 offset_bottom = 593.0
 text = "no autostart
-1 sec. duration, infinite loops"
+1 sec. duration, no loops"
 vertical_alignment = 1
 
 [node name="Sprite2D4" type="Sprite2D" parent="." unique_id=25941154]
@@ -183,7 +183,7 @@ tween_configuration = SubResource("Resource_3ig46")
 tween_duration = 2.0
 autostart = false
 autostart_delay = 2.0
-loop_repetitions = 2
+loop = false
 persist_tween_information = true
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
