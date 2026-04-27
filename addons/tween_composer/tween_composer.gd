@@ -9,18 +9,22 @@ extends Node
 ## TweenComposer features: [br]
 ## * Dropdown for basic properties (position, rotation, scale, color/opacity). [br]
 ## * An "Other" field for changing a custom property (or paths, like "position:x".  [br]
-## * Sending triggers as a signal so other nodes can be connected and interact with the tween.
-## * "Hide before" and "Delete after" tweens.
+## * Sending triggers as a signal so other nodes can be connected and interact with the tween. [br]
+## * "Hide before" and "Delete after" tweens. [br]
+## * Playback options to pause/play, reset, restart... [br]
 ##
+## TODO: Preview in editor: Now that reset_tween is possible, this should be doable.
 ## TODO: Known issue: Fix bug of parallel and delayed tween property if it is a relative as well (currently throws an error to warn the developer)
 ## TODO: Improvement: set_loops() is said to be buggy (or at least less sync-reliable). Investigate further.
 ##
 
-#region Variables
+
 
 @warning_ignore("unused_signal")
 signal trigger_fired(trigger_name)
 
+
+#region Variables
 
 ## The [TweenConfigCollection] to use in the animation.
 @export var tween_configuration: TweenConfigCollection
