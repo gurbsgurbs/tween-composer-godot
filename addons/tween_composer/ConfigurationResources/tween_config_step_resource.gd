@@ -20,15 +20,15 @@ const PROPERTY_RULES: Dictionary = {
 }
 
 ## Sets the name of the tween step. [br]
-## Useful for identifying steps in the inspector list, and for easier manipulation of the resource 
-## in the array.
-@export var nickname: String:
+## Not used in the code, but very useful for identifying steps in the inspector list, and for 
+##easier manipulation of the resource in the array.
+@export var step_name: String = "Tween Step":
 	set(value):
-		nickname = value
+		step_name = value
 		resource_name = value
 		#notify_property_list_changed() # BUG: Can't use this or Godot's text field will bug!
 	get:
-		return nickname
+		return step_name
 
 ## If false, disables this step when composing the tween in the [TweenComposer]. [br]
 ## Useful for creating the animation and testing things out without having to delete a step.
