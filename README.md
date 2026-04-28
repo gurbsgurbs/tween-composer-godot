@@ -16,11 +16,13 @@ A tool for creating tween animations using the inspector tab in Godot. It works 
 ## How to Use
 Tween Composer works with `Node2D`, `Node3D` and `Control` nodes, but it can be used in virtually any node that needs tweens.
 
-To animate an object, simply attach TweenComposer as its child.
+To animate an object:
+1. Attach TweenComposer as its child.
+2. Use the inspector to create a new set of tween steps, and set the tween properties for duration, loops, etc.
 
 Tween Composer uses two resources to work:
-1. **TweenConfigStep**: A set of instructions for a tween step (what property, transition type, easing, etc)
-1. **TweenConfigCollection**: An array of tween steps that will be used to compose your animation. This can be saved and reused.
+- **TweenConfigStep**: A set of instructions for a tween step (what property, transition type, easing, etc)
+- **TweenConfigCollection**: An array of tween steps that will be used to compose your animation. This can be saved and reused.
 ## Installation
 You can find Tween Composer in the Asset Library inside Godot.
 
