@@ -10,15 +10,15 @@ extends Node
 ## * Dropdown for basic properties (position, rotation, scale, color/opacity). [br]
 ## * An "Other" field for changing a custom property (or paths, like "position:x".  [br]
 ## * Sending triggers as a signal so other nodes can be connected and interact with the tween. [br]
-## * "Hide before" and "Delete after" tweens. [br]
 ## * Playback options to pause/play, reset, restart... [br]
+## * "Hide before" and "Delete after" tween, to simplify the parent's spawning/destroying animations. [br]
 ##
 ## TODO: Preview in editor: Now that reset_tween is done, this should be doable.
 ## TODO: Improvement?: set_loops() is said to be buggy (or at least less sync-reliable). Investigate further.
 ## TBD: Idea: Load TweenConfig? Would allow the user to have a single TweenComposer and change animations.
+## TBD: Idea: Add tween_callback(), tween_method()
 ## BUG: Known issue: Parallel and delayed tween property if it is a relative as well (currently throws an error to warn the user)
 ## 
-
 
 
 @warning_ignore("unused_signal")
@@ -179,7 +179,7 @@ func compose_tween() -> void:
 		tween.set_ease(tw_step.easing)
 		tween.set_parallel(tw_step.parallel)
 		
-		var is_relative: bool = false
+		var is_relative: bool = false # TODO: This variable seems unnecessary now. Remove?
 		if tw_step.relative_value == true:
 			is_relative = true
 		
@@ -215,7 +215,7 @@ func compose_tween() -> void:
 	# Connects the method to the function
 	tween.connect("finished", _on_tween_finished)
 	
-	# Stops the tween, as this is just the compose_tween function!
+	# Stops the tween (this is just the compose_tween function)
 	tween.stop()
 
 
