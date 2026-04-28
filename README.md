@@ -12,7 +12,7 @@ A tool for creating tween animations using the inspector tab in Godot. It works 
 - Dropdown for basic properties (position, rotation, scale, color/opacity), plus an "Other" field for changing a custom property (using property paths, e.g. `position:x`).
 - Sending triggers as a signal so other nodes can be connected and interact with the tween.
 - Playback options to pause/play, reset, restart...
-- "Hide before" and "Delete after" tween animation.
+- "Hide before" and "Delete after" tween, to simplify the parent's spawning/destroying animations.
 ## How to Use
 Tween Composer works with `Node2D`, `Node3D` and `Control` nodes, but it can be used in virtually any node that needs tweens.
 
