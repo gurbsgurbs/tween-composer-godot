@@ -13,10 +13,11 @@ extends Node
 ## * "Hide before" and "Delete after" tweens. [br]
 ## * Playback options to pause/play, reset, restart... [br]
 ##
-## TODO: Preview in editor: Now that reset_tween is possible, this should be doable.
-## TODO: Known issue: Fix bug of parallel and delayed tween property if it is a relative as well (currently throws an error to warn the developer)
-## TODO: Improvement: set_loops() is said to be buggy (or at least less sync-reliable). Investigate further.
-##
+## TODO: Preview in editor: Now that reset_tween is done, this should be doable.
+## TODO: Improvement?: set_loops() is said to be buggy (or at least less sync-reliable). Investigate further.
+## TBD: Idea: Load TweenConfig? Would allow the user to have a single TweenComposer and change animations.
+## BUG: Known issue: Parallel and delayed tween property if it is a relative as well (currently throws an error to warn the user)
+## 
 
 
 
