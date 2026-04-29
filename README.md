@@ -35,6 +35,7 @@ You can also:
 - Enable the plugin in `Project Settings...` and `Plugins` tab
 
 ## Improvements / Future features
-A couple of ideas to expand TweenComposer:
+A couple of ideas to expand TweenComposer in the future:
 - Preview on editor (great for working on the animation without having to run it every time!)
 - Implement tween_callback() and tween_method(), somehow.
+- Using variables as property values, to make dynamic animations.
