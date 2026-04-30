@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ni34g8bdk5ub" path="res://examples/assets/shapes/shape_128_circle_o.png" id="4_2xvdi"]
 [ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="5_dl8wn"]
 [ext_resource type="Resource" uid="uid://xpm0221byhu4" path="res://examples/saved tweens/001_left_right_480.tres" id="6_7vtjs"]
-[ext_resource type="Resource" uid="uid://do3xetvttgip" path="res://examples/saved tweens/002_left_right_absolute.tres" id="7_hgd4e"]
+[ext_resource type="Resource" uid="uid://do3xetvttgip" path="res://examples/saved tweens/003_left_right_absolute.tres" id="7_hgd4e"]
 [ext_resource type="Texture2D" uid="uid://d2r8lfxg2yvb0" path="res://examples/assets/shapes/shape_128s_square_r_o.png" id="8_2dlr4"]
-[ext_resource type="Resource" uid="uid://bw136pknydla6" path="res://examples/saved tweens/002_change_color.tres" id="9_p5isu"]
+[ext_resource type="Resource" uid="uid://bw136pknydla6" path="res://examples/saved tweens/003_change_color.tres" id="9_p5isu"]
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]
 base_font = ExtResource("1_thv6h")
