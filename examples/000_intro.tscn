@@ -1,0 +1,383 @@
+[gd_scene format=3 uid="uid://c43dneb2s7qj5"]
+
+[ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="1_raajm"]
+[ext_resource type="LabelSettings" uid="uid://cx5bk6kp3uxpd" path="res://examples/assets/font/label_24.tres" id="2_16pl7"]
+[ext_resource type="LabelSettings" uid="uid://dc4fkqy5dr5cv" path="res://examples/assets/font/label_16.tres" id="3_84d4k"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="5_jad8w"]
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_config_collection_resource.gd" id="6_wiyhq"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_config_step_resource.gd" id="7_5rk1r"]
+[ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="7_iq14t"]
+
+[sub_resource type="GDScript" id="GDScript_t1lj7"]
+script/source = "extends Control
+
+@onready var tween_composer: TweenComposer = $Sprite2D4/TweenComposer
+
+func _on_button_pressed() -> void:
+	tween_composer.play_tween()
+"
+
+[sub_resource type="FontVariation" id="FontVariation_ovd21"]
+base_font = ExtResource("1_raajm")
+variation_opentype = {
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_ieo45"]
+line_spacing = 0.0
+font = SubResource("FontVariation_ovd21")
+font_size = 40
+
+[sub_resource type="Resource" id="Resource_raajm"]
+resource_local_to_scene = true
+resource_name = "Go right"
+script = ExtResource("7_5rk1r")
+step_name = "Go right"
+easing = 1
+tween_property = 4
+property_name = "position:x"
+custom_property = "position:x"
+custom_property_type = 3
+target_value = 496.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_5rk1r"]
+resource_local_to_scene = true
+resource_name = "Rotate (parallel)"
+script = ExtResource("7_5rk1r")
+step_name = "Rotate (parallel)"
+transition = 0
+parallel = true
+tween_property = 1
+property_name = "rotation_degrees"
+target_value = Vector3(72, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_16pl7"]
+resource_local_to_scene = true
+resource_name = "Go left"
+script = ExtResource("7_5rk1r")
+step_name = "Go left"
+tween_property = 4
+property_name = "position:x"
+custom_property = "position:x"
+custom_property_type = 3
+target_value = -496.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_wiyhq"]
+resource_local_to_scene = true
+resource_name = "Rotate (parallel)"
+script = ExtResource("7_5rk1r")
+step_name = "Rotate (parallel)"
+transition = 0
+parallel = true
+tween_property = 1
+property_name = "rotation_degrees"
+target_value = Vector3(72, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_84d4k"]
+resource_local_to_scene = true
+resource_name = "Bounce and Rotate"
+script = ExtResource("6_wiyhq")
+tween_name = "Bounce and Rotate"
+tween_collection = Array[ExtResource("7_5rk1r")]([SubResource("Resource_raajm"), SubResource("Resource_5rk1r"), SubResource("Resource_16pl7"), SubResource("Resource_wiyhq")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wiyhq"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.48629558, 0.686606, 0.75650036, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+
+[sub_resource type="FontVariation" id="FontVariation_wiyhq"]
+base_font = ExtResource("1_raajm")
+variation_opentype = {
+2003265652: 600
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_5rk1r"]
+font = SubResource("FontVariation_wiyhq")
+font_color = Color(0.051775992, 0.28960148, 0.23812196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5rk1r"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 5
+
+[node name="001Intro" type="Control" unique_id=1877161272]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_t1lj7")
+metadata/_edit_lock_ = true
+
+[node name="SizeCheck" type="ColorRect" parent="." unique_id=733821207]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 720.0
+color = Color(0.38216856, 0.20667574, 0.24634716, 1)
+metadata/_edit_lock_ = true
+
+[node name="Title" type="Label" parent="." unique_id=391862351]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 688.0
+offset_bottom = 100.0
+text = "Tween Composer"
+label_settings = SubResource("LabelSettings_ieo45")
+
+[node name="Description" type="Label" parent="." unique_id=805527058]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 688.0
+offset_bottom = 164.0
+text = "Tween Composer allows you to use the inspector to create your animations, and save them as reusable resources."
+label_settings = ExtResource("2_16pl7")
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140211992]
+position = Vector2(96, 264)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_iq14t")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D" unique_id=783221572]
+script = ExtResource("5_jad8w")
+tween_configuration = SubResource("Resource_84d4k")
+tween_duration = 2.0
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="Description2" type="Label" parent="." unique_id=1373993509]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 344.0
+offset_right = 688.0
+offset_bottom = 378.0
+text = "Terminology:"
+label_settings = ExtResource("2_16pl7")
+autowrap_mode = 3
+
+[node name="Properties1" type="Label" parent="." unique_id=344616555]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 400.0
+offset_right = 640.0
+offset_bottom = 475.0
+text = "Tween Collection:
+A collection of tween steps.
+Can be saved as a resource"
+label_settings = ExtResource("3_84d4k")
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=780156796]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 400.0
+offset_right = 256.0
+offset_bottom = 424.0
+text = "Collection"
+label_settings = ExtResource("3_84d4k")
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=888287182]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 480.0
+offset_right = 104.0
+offset_bottom = 504.0
+text = "Step"
+label_settings = ExtResource("3_84d4k")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="." unique_id=62320792]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 504.0
+offset_right = 352.0
+offset_bottom = 528.0
+text = "Section"
+label_settings = ExtResource("3_84d4k")
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="." unique_id=1838664869]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 528.0
+offset_right = 104.0
+offset_bottom = 552.0
+text = "Step"
+label_settings = ExtResource("3_84d4k")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="." unique_id=1398129328]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 576.0
+offset_right = 104.0
+offset_bottom = 600.0
+text = "Step"
+label_settings = ExtResource("3_84d4k")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="." unique_id=1014853039]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 624.0
+offset_right = 104.0
+offset_bottom = 648.0
+text = "Step"
+label_settings = ExtResource("3_84d4k")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Properties2" type="Label" parent="." unique_id=179075784]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 496.0
+offset_right = 674.0
+offset_bottom = 571.0
+text = "Tween Step:
+A single instruction in  the tween,
+transforming a specfic property."
+vertical_alignment = 1
+
+[node name="Properties3" type="Label" parent="." unique_id=592556169]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 592.0
+offset_right = 674.0
+offset_bottom = 667.0
+text = "Tween Section:
+A group of steps that are parallel,
+starting at the same time."
+vertical_alignment = 1
+
+[node name="TweenParts" type="Control" parent="." unique_id=1942548096]
+anchors_preset = 0
+offset_left = 88.0
+offset_top = 424.0
+offset_right = 128.0
+offset_bottom = 464.0
+
+[node name="1" type="PanelContainer" parent="TweenParts" unique_id=1364332111]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wiyhq")
+
+[node name="Label" type="Label" parent="TweenParts/1" unique_id=213033299]
+layout_mode = 2
+text = "Bounce and Rotate"
+label_settings = SubResource("LabelSettings_5rk1r")
+horizontal_alignment = 1
+
+[node name="2" type="PanelContainer" parent="TweenParts" unique_id=47393726]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 160.0
+offset_bottom = 88.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wiyhq")
+
+[node name="Label" type="Label" parent="TweenParts/2" unique_id=707037964]
+layout_mode = 2
+text = "Go Right"
+label_settings = SubResource("LabelSettings_5rk1r")
+horizontal_alignment = 1
+
+[node name="3" type="PanelContainer" parent="TweenParts" unique_id=1715387866]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 160.0
+offset_bottom = 136.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wiyhq")
+
+[node name="Label" type="Label" parent="TweenParts/3" unique_id=47384783]
+layout_mode = 2
+text = "Rotate (parallel)"
+label_settings = SubResource("LabelSettings_5rk1r")
+horizontal_alignment = 1
+
+[node name="4" type="PanelContainer" parent="TweenParts" unique_id=740855334]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 144.0
+offset_right = 160.0
+offset_bottom = 184.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wiyhq")
+
+[node name="Label" type="Label" parent="TweenParts/4" unique_id=1206021137]
+layout_mode = 2
+text = "Go Left"
+label_settings = SubResource("LabelSettings_5rk1r")
+horizontal_alignment = 1
+
+[node name="5" type="PanelContainer" parent="TweenParts" unique_id=229917472]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 160.0
+offset_bottom = 232.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wiyhq")
+
+[node name="Label" type="Label" parent="TweenParts/5" unique_id=383393039]
+layout_mode = 2
+text = "Rotate (parallel)"
+label_settings = SubResource("LabelSettings_5rk1r")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=1118656885]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 472.0
+offset_right = 288.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5rk1r")
+
+[node name="Label7" type="Label" parent="." unique_id=554529916]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 600.0
+offset_right = 352.0
+offset_bottom = 624.0
+text = "Section"
+label_settings = ExtResource("3_84d4k")
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="." unique_id=273537175]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 568.0
+offset_right = 288.0
+offset_bottom = 656.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5rk1r")

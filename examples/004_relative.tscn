@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ni34g8bdk5ub" path="res://examples/assets/shapes/shape_128_circle_o.png" id="4_2xvdi"]
 [ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="5_dl8wn"]
 [ext_resource type="Resource" uid="uid://xpm0221byhu4" path="res://examples/saved tweens/001_left_right_480.tres" id="6_7vtjs"]
-[ext_resource type="Resource" uid="uid://do3xetvttgip" path="res://examples/saved tweens/002_left_right_absolute.tres" id="7_hgd4e"]
+[ext_resource type="Resource" uid="uid://do3xetvttgip" path="res://examples/saved tweens/003_left_right_absolute.tres" id="7_hgd4e"]
 [ext_resource type="Texture2D" uid="uid://d2r8lfxg2yvb0" path="res://examples/assets/shapes/shape_128s_square_r_o.png" id="8_2dlr4"]
-[ext_resource type="Resource" uid="uid://bw136pknydla6" path="res://examples/saved tweens/002_change_color.tres" id="9_p5isu"]
+[ext_resource type="Resource" uid="uid://bw136pknydla6" path="res://examples/saved tweens/003_change_color.tres" id="9_p5isu"]
 
 [sub_resource type="FontVariation" id="FontVariation_ovd21"]
 base_font = ExtResource("1_thv6h")
@@ -56,6 +56,16 @@ text = "Enabling the \"Relative\" boolean in the step configuration makes the pr
 label_settings = ExtResource("2_p5isu")
 autowrap_mode = 3
 
+[node name="Description2" type="Label" parent="." unique_id=476085755]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 576.0
+offset_right = 688.0
+offset_bottom = 651.0
+text = "Note that Relative is TRUE by default. Some properties behave better if the flag is set to FALSE (e.g. Modulate: You'll likely want the object to change to a specific color, not add/remove RGB)."
+label_settings = ExtResource("3_2dlr4")
+autowrap_mode = 3
+
 [node name="Properties1" type="Label" parent="." unique_id=344616555]
 layout_mode = 0
 offset_left = 448.0
@@ -66,16 +76,6 @@ text = "relative movement
 left-to-right 480px"
 label_settings = ExtResource("3_2dlr4")
 vertical_alignment = 1
-
-[node name="Description2" type="Label" parent="Properties1" unique_id=476085755]
-layout_mode = 0
-offset_left = -288.0
-offset_top = 320.0
-offset_right = 240.0
-offset_bottom = 395.0
-text = "Note that Relative is TRUE by default. Some properties behave better if the flag is set to FALSE (e.g. Modulate: You'll likely want the object to change to a specific color, not add/remove RGB)."
-label_settings = ExtResource("3_2dlr4")
-autowrap_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2140211992]
 position = Vector2(96, 288)
@@ -93,7 +93,7 @@ layout_mode = 0
 offset_left = 448.0
 offset_top = 352.0
 offset_right = 672.0
-offset_bottom = 401.0
+offset_bottom = 453.0
 text = "absolute movement
 both shapes go to first step's
 position, and then loop in
