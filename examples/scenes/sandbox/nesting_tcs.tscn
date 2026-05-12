@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://c5mwdorm6hmy7"]
+
+[ext_resource type="Texture2D" uid="uid://134tn44ubqdt" path="res://examples/assets/shapes/shape_128_cross_25_r_o.png" id="1_fb6p5"]
+[ext_resource type="LabelSettings" uid="uid://dc4fkqy5dr5cv" path="res://examples/assets/font/label_16.tres" id="2_3mp5f"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="3_n6qld"]
+[ext_resource type="Script" uid="uid://daxe4s6rqjw57" path="res://addons/tween_composer/ConfigurationResources/tween_sequence_resource.gd" id="4_hs3qy"]
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_step_collection_resource.gd" id="5_uiakq"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_step_item_resource.gd" id="6_007se"]
+[ext_resource type="Texture2D" uid="uid://djmuwkmdc7kso" path="res://examples/assets/shapes/shape_512s_pentagon_r.png" id="7_ij0a1"]
+
+[sub_resource type="Resource" id="Resource_pk48u"]
+resource_local_to_scene = true
+resource_name = "Sine 1"
+script = ExtResource("6_007se")
+step_name = "Sine 1"
+transition = 1
+easing = 2
+tween_property = 4
+property_name = "position:x"
+custom_property = "position:x"
+custom_property_type = 3
+target_value = 128.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_hkt2j"]
+resource_local_to_scene = true
+script = ExtResource("6_007se")
+transition = 1
+easing = 2
+tween_property = 4
+property_name = "position:x"
+custom_property = "position:x"
+custom_property_type = 3
+target_value = -128.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_jlw7d"]
+resource_local_to_scene = true
+script = ExtResource("5_uiakq")
+step_collection = Array[ExtResource("6_007se")]([SubResource("Resource_pk48u"), SubResource("Resource_hkt2j")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="Resource" id="Resource_5s6g0"]
+resource_name = "Move X Sine"
+script = ExtResource("4_hs3qy")
+sequence_name = "Move X Sine"
+tween_steps = SubResource("Resource_jlw7d")
+tween_duration = 4.0
+metadata/_custom_type_script = "uid://daxe4s6rqjw57"
+
+[sub_resource type="Resource" id="Resource_wy8cs"]
+resource_local_to_scene = true
+resource_name = "Sine 1"
+script = ExtResource("6_007se")
+step_name = "Sine 1"
+transition = 1
+easing = 2
+tween_property = 4
+property_name = "position:y"
+custom_property = "position:y"
+custom_property_type = 3
+target_value = 128.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_dysmu"]
+resource_local_to_scene = true
+resource_name = "Sine 2"
+script = ExtResource("6_007se")
+step_name = "Sine 2"
+transition = 1
+easing = 2
+tween_property = 4
+property_name = "position:y"
+custom_property = "position:y"
+custom_property_type = 3
+target_value = -128.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_bucbw"]
+resource_local_to_scene = true
+script = ExtResource("5_uiakq")
+step_collection = Array[ExtResource("6_007se")]([SubResource("Resource_wy8cs"), SubResource("Resource_dysmu")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="Resource" id="Resource_t15ge"]
+resource_name = "Move X Sine"
+script = ExtResource("4_hs3qy")
+sequence_name = "Move X Sine"
+tween_steps = SubResource("Resource_bucbw")
+tween_duration = 4.0
+metadata/_custom_type_script = "uid://daxe4s6rqjw57"
+
+[sub_resource type="Resource" id="Resource_ecyew"]
+resource_local_to_scene = true
+script = ExtResource("6_007se")
+transition = 5
+easing = 2
+tween_property = 1
+property_name = "rotation_degrees"
+target_value = Vector3(360, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_e8wyy"]
+resource_local_to_scene = true
+script = ExtResource("6_007se")
+transition = 0
+easing = 2
+duration_ratio = 3.0
+tween_property = 1
+property_name = "rotation_degrees"
+target_value = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_blwwx"]
+resource_local_to_scene = true
+script = ExtResource("5_uiakq")
+step_collection = Array[ExtResource("6_007se")]([SubResource("Resource_ecyew"), SubResource("Resource_e8wyy")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="Resource" id="Resource_5fa8m"]
+script = ExtResource("4_hs3qy")
+tween_steps = SubResource("Resource_blwwx")
+tween_duration = 10.0
+metadata/_custom_type_script = "uid://daxe4s6rqjw57"
+
+[node name="NestingTCs" type="Node2D" unique_id=2033632311]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1618819311]
+position = Vector2(336, 320)
+texture = ExtResource("1_fb6p5")
+
+[node name="Label" type="Label" parent="Sprite2D" unique_id=802561011]
+offset_left = 80.0
+offset_top = -16.0
+offset_right = 270.08582
+offset_bottom = 33.0
+text = "Sprite2D containing two Tween Composer nodes:
+Move X and Move Y"
+label_settings = ExtResource("2_3mp5f")
+autowrap_mode = 3
+
+[node name="MoveXSine" type="Node" parent="Sprite2D" unique_id=1466741993]
+script = ExtResource("3_n6qld")
+tween_sequence = SubResource("Resource_5s6g0")
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="MoveYSine" type="Node" parent="Sprite2D" unique_id=669986480]
+script = ExtResource("3_n6qld")
+tween_sequence = SubResource("Resource_t15ge")
+autostart_delay = 1.0
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=401975925]
+self_modulate = Color(1, 1, 1, 0.19607843)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_ij0a1")
+offset = Vector2(0, -32)
+
+[node name="Label" type="Label" parent="Sprite2D/Sprite2D" unique_id=1649335735]
+offset_left = 352.0
+offset_top = 224.0
+offset_right = 560.0
+offset_bottom = 273.0
+scale = Vector2(2, 2)
+text = "Nested Sprite2D with a Tween Composer, rotating"
+label_settings = ExtResource("2_3mp5f")
+autowrap_mode = 3
+
+[node name="TweenComposer" type="Node" parent="Sprite2D/Sprite2D" unique_id=228991116]
+script = ExtResource("3_n6qld")
+tween_sequence = SubResource("Resource_5fa8m")
+metadata/_custom_type_script = "uid://bepnihd7w544x"

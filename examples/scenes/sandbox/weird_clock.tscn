@@ -253,7 +253,7 @@ metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 [node name="WeirdClock" type="Node2D" unique_id=1589544904]
 
 [node name="BG" type="Sprite2D" parent="." unique_id=141547251]
-scale = Vector2(20, 12)
+scale = Vector2(20, 11.25)
 texture = SubResource("GradientTexture2D_q2iav")
 centered = false
 
