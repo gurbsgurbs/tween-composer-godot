@@ -1,19 +1,30 @@
 [gd_scene format=3 uid="uid://cv2xbhjcbjykf"]
 
-[ext_resource type="Texture2D" uid="uid://djmuwkmdc7kso" path="res://examples/assets/shapes/shape_512s_pentagon_r.png" id="1_1otku"]
-[ext_resource type="Texture2D" uid="uid://s6h2s1i3jp8i" path="res://examples/assets/shapes/shape_512s_hexagon_r.png" id="1_we2vv"]
-[ext_resource type="Texture2D" uid="uid://kk7iw0fued2d" path="res://examples/assets/shape_128_circle.png" id="2_571ib"]
-[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="2_u4tnx"]
-[ext_resource type="Script" uid="uid://daxe4s6rqjw57" path="res://addons/tween_composer/ConfigurationResources/tween_sequence_resource.gd" id="3_kr7ta"]
-[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_step_collection_resource.gd" id="4_we2vv"]
-[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_step_item_resource.gd" id="5_38p0i"]
-[ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="6_u4tnx"]
-[ext_resource type="Texture2D" uid="uid://134tn44ubqdt" path="res://examples/assets/shapes/shape_128_cross_25_r_o.png" id="7_kr7ta"]
-[ext_resource type="Texture2D" uid="uid://ni34g8bdk5ub" path="res://examples/assets/shapes/shape_128_circle_o.png" id="9_38p0i"]
+[ext_resource type="Texture2D" uid="uid://ni34g8bdk5ub" path="res://examples/assets/shapes/shape_128_circle_o.png" id="1_07xda"]
+[ext_resource type="Texture2D" uid="uid://kk7iw0fued2d" path="res://examples/assets/shape_128_circle.png" id="2_a7qb1"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="3_57al0"]
+[ext_resource type="Script" uid="uid://daxe4s6rqjw57" path="res://addons/tween_composer/ConfigurationResources/tween_sequence_resource.gd" id="4_e3jrk"]
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_step_collection_resource.gd" id="5_5j3fs"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_step_item_resource.gd" id="6_map53"]
+[ext_resource type="Texture2D" uid="uid://s6h2s1i3jp8i" path="res://examples/assets/shapes/shape_512s_hexagon_r.png" id="7_sxu7n"]
+[ext_resource type="Texture2D" uid="uid://djmuwkmdc7kso" path="res://examples/assets/shapes/shape_512s_pentagon_r.png" id="8_3y45t"]
+[ext_resource type="Texture2D" uid="uid://b08s2a47hkm1b" path="res://examples/assets/shapes/shape_128_pentagon_r_o.png" id="9_p4dbx"]
+[ext_resource type="Texture2D" uid="uid://134tn44ubqdt" path="res://examples/assets/shapes/shape_128_cross_25_r_o.png" id="10_prrq0"]
+
+[sub_resource type="Gradient" id="Gradient_571ib"]
+colors = PackedColorArray(0.34295, 0.209, 0.38, 1, 0.38996997, 0.28139997, 0.42, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q2iav"]
+gradient = SubResource("Gradient_571ib")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 2
 
 [sub_resource type="Resource" id="Resource_bq5eh"]
 resource_local_to_scene = true
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 transition = 2
 easing = 2
 tween_property = 1
@@ -23,12 +34,12 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
 [sub_resource type="Resource" id="Resource_hqo3j"]
 resource_local_to_scene = true
-script = ExtResource("4_we2vv")
-step_collection = Array[ExtResource("5_38p0i")]([SubResource("Resource_bq5eh")])
+script = ExtResource("5_5j3fs")
+step_collection = Array[ExtResource("6_map53")]([SubResource("Resource_bq5eh")])
 metadata/_custom_type_script = "uid://b2cnshkmciixf"
 
 [sub_resource type="Resource" id="Resource_w3vnq"]
-script = ExtResource("3_kr7ta")
+script = ExtResource("4_e3jrk")
 tween_steps = SubResource("Resource_hqo3j")
 tween_duration = 4.0
 metadata/_custom_type_script = "uid://daxe4s6rqjw57"
@@ -36,7 +47,7 @@ metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 [sub_resource type="Resource" id="Resource_ksiph"]
 resource_local_to_scene = true
 resource_name = "Scale up"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 step_name = "Scale up"
 transition = 5
 easing = 2
@@ -49,7 +60,7 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 [sub_resource type="Resource" id="Resource_iyhdp"]
 resource_local_to_scene = true
 resource_name = "* Rotate"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 step_name = "* Rotate"
 transition = 5
 easing = 2
@@ -62,7 +73,7 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 [sub_resource type="Resource" id="Resource_bvjy8"]
 resource_local_to_scene = true
 resource_name = "Scale normal"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 step_name = "Scale normal"
 transition = 1
 easing = 2
@@ -75,19 +86,19 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
 [sub_resource type="Resource" id="Resource_q0cvn"]
 resource_local_to_scene = true
-script = ExtResource("4_we2vv")
-step_collection = Array[ExtResource("5_38p0i")]([SubResource("Resource_ksiph"), SubResource("Resource_iyhdp"), SubResource("Resource_bvjy8")])
+script = ExtResource("5_5j3fs")
+step_collection = Array[ExtResource("6_map53")]([SubResource("Resource_ksiph"), SubResource("Resource_iyhdp"), SubResource("Resource_bvjy8")])
 metadata/_custom_type_script = "uid://b2cnshkmciixf"
 
 [sub_resource type="Resource" id="Resource_6nb07"]
-script = ExtResource("3_kr7ta")
+script = ExtResource("4_e3jrk")
 tween_steps = SubResource("Resource_q0cvn")
 tween_duration = 4.0
 metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 
 [sub_resource type="Resource" id="Resource_571ib"]
 resource_local_to_scene = true
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 transition = 5
 easing = 2
 tween_property = 1
@@ -97,19 +108,19 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
 [sub_resource type="Resource" id="Resource_q2iav"]
 resource_local_to_scene = true
-script = ExtResource("4_we2vv")
-step_collection = Array[ExtResource("5_38p0i")]([SubResource("Resource_571ib")])
+script = ExtResource("5_5j3fs")
+step_collection = Array[ExtResource("6_map53")]([SubResource("Resource_571ib")])
 metadata/_custom_type_script = "uid://b2cnshkmciixf"
 
 [sub_resource type="Resource" id="Resource_5621t"]
-script = ExtResource("3_kr7ta")
+script = ExtResource("4_e3jrk")
 tween_steps = SubResource("Resource_q2iav")
 metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 
 [sub_resource type="Resource" id="Resource_kr7ta"]
 resource_local_to_scene = true
 resource_name = "Move Down"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 step_name = "Move Down"
 transition = 5
 easing = 2
@@ -123,7 +134,7 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 [sub_resource type="Resource" id="Resource_u4tnx"]
 resource_local_to_scene = true
 resource_name = "* Rotate"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 step_name = "* Rotate"
 transition = 5
 easing = 2
@@ -133,10 +144,23 @@ property_name = "rotation_degrees"
 target_value = Vector3(36, 0, 0)
 metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
+[sub_resource type="Resource" id="Resource_a680n"]
+resource_local_to_scene = true
+resource_name = "* Color"
+script = ExtResource("6_map53")
+step_name = "* Color"
+transition = 0
+parallel = true
+relative_value = false
+tween_property = 3
+property_name = "modulate"
+target_value = Color(0.85423326, 0.44099998, 0.98, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
 [sub_resource type="Resource" id="Resource_we2vv"]
 resource_local_to_scene = true
 resource_name = "Move Up"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 step_name = "Move Up"
 transition = 5
 easing = 2
@@ -150,7 +174,7 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 [sub_resource type="Resource" id="Resource_uvfx3"]
 resource_local_to_scene = true
 resource_name = "* Rotate"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 step_name = "* Rotate"
 transition = 5
 easing = 2
@@ -160,21 +184,34 @@ property_name = "rotation_degrees"
 target_value = Vector3(36, 0, 0)
 metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
+[sub_resource type="Resource" id="Resource_jivm0"]
+resource_local_to_scene = true
+resource_name = "* Color"
+script = ExtResource("6_map53")
+step_name = "* Color"
+transition = 0
+parallel = true
+relative_value = false
+tween_property = 3
+property_name = "modulate"
+target_value = Color(0.9098039, 0.67058825, 0.98039216, 1)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
 [sub_resource type="Resource" id="Resource_38p0i"]
 resource_local_to_scene = true
-script = ExtResource("4_we2vv")
-step_collection = Array[ExtResource("5_38p0i")]([SubResource("Resource_kr7ta"), SubResource("Resource_u4tnx"), SubResource("Resource_we2vv"), SubResource("Resource_uvfx3")])
+script = ExtResource("5_5j3fs")
+step_collection = Array[ExtResource("6_map53")]([SubResource("Resource_kr7ta"), SubResource("Resource_u4tnx"), SubResource("Resource_a680n"), SubResource("Resource_we2vv"), SubResource("Resource_uvfx3"), SubResource("Resource_jivm0")])
 metadata/_custom_type_script = "uid://b2cnshkmciixf"
 
 [sub_resource type="Resource" id="Resource_65h6b"]
-script = ExtResource("3_kr7ta")
+script = ExtResource("4_e3jrk")
 tween_steps = SubResource("Resource_38p0i")
 tween_duration = 2.0
 metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 
 [sub_resource type="Resource" id="Resource_e157u"]
 resource_local_to_scene = true
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 transition = 0
 tween_property = 1
 property_name = "rotation_degrees"
@@ -183,19 +220,19 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
 [sub_resource type="Resource" id="Resource_o2x2n"]
 resource_local_to_scene = true
-script = ExtResource("4_we2vv")
-step_collection = Array[ExtResource("5_38p0i")]([SubResource("Resource_e157u")])
+script = ExtResource("5_5j3fs")
+step_collection = Array[ExtResource("6_map53")]([SubResource("Resource_e157u")])
 metadata/_custom_type_script = "uid://b2cnshkmciixf"
 
 [sub_resource type="Resource" id="Resource_m5y2o"]
-script = ExtResource("3_kr7ta")
+script = ExtResource("4_e3jrk")
 tween_steps = SubResource("Resource_o2x2n")
 metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 
 [sub_resource type="Resource" id="Resource_4p3j6"]
 resource_local_to_scene = true
 resource_name = "Tween Step"
-script = ExtResource("5_38p0i")
+script = ExtResource("6_map53")
 transition = 0
 tween_property = 1
 property_name = "rotation_degrees"
@@ -204,58 +241,63 @@ metadata/_custom_type_script = "uid://bq7aba2n0qrym"
 
 [sub_resource type="Resource" id="Resource_e8oiu"]
 resource_local_to_scene = true
-script = ExtResource("4_we2vv")
-step_collection = Array[ExtResource("5_38p0i")]([SubResource("Resource_4p3j6")])
+script = ExtResource("5_5j3fs")
+step_collection = Array[ExtResource("6_map53")]([SubResource("Resource_4p3j6")])
 metadata/_custom_type_script = "uid://b2cnshkmciixf"
 
 [sub_resource type="Resource" id="Resource_ma0jn"]
-script = ExtResource("3_kr7ta")
+script = ExtResource("4_e3jrk")
 tween_steps = SubResource("Resource_e8oiu")
 metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 
-[node name="Video1" type="Node2D" unique_id=1589544904]
+[node name="WeirdClock" type="Node2D" unique_id=1589544904]
+
+[node name="BG" type="Sprite2D" parent="." unique_id=141547251]
+scale = Vector2(20, 12)
+texture = SubResource("GradientTexture2D_q2iav")
+centered = false
 
 [node name="Orbit" type="Sprite2D" parent="." unique_id=1119408552]
 modulate = Color(0.12483333, 0.07, 0.14, 1)
 position = Vector2(160, 360)
-texture = ExtResource("9_38p0i")
+texture = ExtResource("1_07xda")
 
 [node name="Circ" type="Sprite2D" parent="." unique_id=1896251340]
 position = Vector2(160, 360)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_571ib")
+texture = ExtResource("2_a7qb1")
 offset = Vector2(0, -232)
 
 [node name="TweenComposer" type="Node" parent="Circ" unique_id=1382410377]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_w3vnq")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Orbit2" type="Sprite2D" parent="." unique_id=1669426042]
 modulate = Color(0.12483333, 0.07, 0.14, 1)
 position = Vector2(1136, 360)
-texture = ExtResource("9_38p0i")
+texture = ExtResource("1_07xda")
 
 [node name="Circ2" type="Sprite2D" parent="." unique_id=1116311584]
 position = Vector2(1136, 360)
 rotation = -3.1415927
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_571ib")
+texture = ExtResource("2_a7qb1")
 offset = Vector2(0, -232)
 
 [node name="TweenComposer" type="Node" parent="Circ2" unique_id=530290190]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_w3vnq")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Hex" type="Sprite2D" parent="." unique_id=1567926555]
-modulate = Color(0.12791331, 0.0882, 0.14, 1)
+modulate = Color(0.091366656, 0.063, 0.1, 1)
 position = Vector2(640, 360)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_we2vv")
+texture = ExtResource("7_sxu7n")
 
 [node name="TweenComposer" type="Node" parent="Hex" unique_id=1598599327]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_6nb07")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
@@ -263,61 +305,61 @@ metadata/_custom_type_script = "uid://bepnihd7w544x"
 modulate = Color(0.21234411, 0.14702663, 0.23062071, 1)
 position = Vector2(640, 360)
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_1otku")
+texture = ExtResource("8_3y45t")
 offset = Vector2(0, -36)
 
 [node name="TweenComposer" type="Node" parent="BigPentagon" unique_id=18592222]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_5621t")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="SmallPentagon" type="Sprite2D" parent="." unique_id=737720678]
-modulate = Color(0.4175438, 0.30471933, 0.45077807, 1)
+modulate = Color(0.9068266, 0.6664, 0.98, 1)
 position = Vector2(640, 176)
-texture = ExtResource("6_u4tnx")
+texture = ExtResource("9_p4dbx")
 offset = Vector2(0, -8)
 
 [node name="TweenComposer" type="Node" parent="SmallPentagon" unique_id=985851427]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_65h6b")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Cross1" type="Sprite2D" parent="." unique_id=1021333165]
 position = Vector2(160, 160)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_kr7ta")
+texture = ExtResource("10_prrq0")
 
 [node name="TweenComposer" type="Node" parent="Cross1" unique_id=600021264]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_m5y2o")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Cross2" type="Sprite2D" parent="." unique_id=1363214600]
 position = Vector2(160, 576)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_kr7ta")
+texture = ExtResource("10_prrq0")
 
 [node name="TweenComposer" type="Node" parent="Cross2" unique_id=1178823755]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_ma0jn")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Cross3" type="Sprite2D" parent="." unique_id=663665751]
 position = Vector2(1136, 160)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_kr7ta")
+texture = ExtResource("10_prrq0")
 
 [node name="TweenComposer" type="Node" parent="Cross3" unique_id=502030907]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_ma0jn")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Cross4" type="Sprite2D" parent="." unique_id=1383606850]
 position = Vector2(1136, 576)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_kr7ta")
+texture = ExtResource("10_prrq0")
 
 [node name="TweenComposer" type="Node" parent="Cross4" unique_id=1964027065]
-script = ExtResource("2_u4tnx")
+script = ExtResource("3_57al0")
 tween_sequence = SubResource("Resource_m5y2o")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
