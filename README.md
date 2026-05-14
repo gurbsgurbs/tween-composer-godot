@@ -15,6 +15,7 @@ A tool for creating tween animations using the inspector tab in Godot. It works 
 - Playback options to pause/play, reset, restart...
 - "Hide before" and "Delete after" tween, to simplify the parent's spawning/destroying animations.
 - Load your TweenSequence saved resources to play different animations.
+- Preview the tween directly in the editor!
 
 ## How to Use
 Tween Composer works with `Node2D`, `Node3D` and `Control` nodes, but it can be used in virtually any node that needs tweens.
@@ -37,8 +38,7 @@ You can also:
 
 ## Improvements / Future features
 A couple of ideas to expand TweenComposer in the future:
-- Preview on editor (great for working on the animation without having to run it every time!)
 - Implement tween_callback() and tween_method(), somehow.
-- Using variables as property values, to make dynamic animations.
+- Using variables or random as property values, to make dynamic animations.
 
 Head to the itch.io page for more updates: https://gurbsgurbs.itch.io/tween-composer
