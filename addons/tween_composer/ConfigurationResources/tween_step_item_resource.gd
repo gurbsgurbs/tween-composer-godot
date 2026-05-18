@@ -144,5 +144,10 @@ func _get_property_list() -> Array:
 				"type": TYPE_STRING,
 				"usage": PROPERTY_USAGE_DEFAULT
 			})
+			properties.append({
+				"name": "target_value", #Added due to fallback if expression fails. #TODO: Not sure if needed.
+				"type": property_type,
+				"usage": PROPERTY_USAGE_STORAGE
+			})
 	
 	return properties

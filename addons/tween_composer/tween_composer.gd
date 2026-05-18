@@ -207,9 +207,15 @@ func _compose_tween() -> void:
 		if tw_step.relative_value == true:
 			is_relative = true
 		
-		# Formatting the values depending on parent Node type and property tweened
-		var target_value_formatted = tw_step.target_value
+		# Getting proper values from either simple values or expressions:
+		var target_value_formatted: Variant
+		match  tw_step.value_source:
+			TweenStepItem.ValueSource.VALUE:
+				target_value_formatted = tw_step.target_value
+			TweenStepItem.ValueSource.EXPRESSION:
+				target_value_formatted = _resolve_expression(tw_step)
 		
+		# Formatting the value depending on parent Node type and property tweened
 		if parent_object is Node2D or parent_object is Control:
 			# Only get 1 rotation axis if 2D
 			if tw_step.tween_property == tw_step.TweenOptions.ROTATION:
@@ -221,7 +227,8 @@ func _compose_tween() -> void:
 		
 		# Constructing the tween property
 		var tw_property = tween.tween_property(parent_object, tw_step.property_name, target_value_formatted, tween_sequence.tween_duration * (tw_step.duration_ratio / duration_ratio_total))
-		
+		print(tw_step.property_name)
+		print(target_value_formatted)
 		if is_relative:
 			tw_property.as_relative()
 		if tw_step.duration_delay > 0.0:
@@ -340,6 +347,25 @@ func _is_tween_config_valid() -> bool:
 		return false
 	else:
 		return true
+
+func _resolve_expression(tw_step: TweenStepItem) -> Variant:
+	var text: String = tw_step.expression_text
+	
+	if text.is_empty():
+		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression is empty!")
+		return tw_step.target_value # Fallback to default target value in step
+	
+	var expression: Expression = Expression.new()
+	expression.parse(text)
+	
+	var result: Variant = expression.execute()
+	
+	if expression.has_execute_failed():
+		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression execution failed!")
+		return tw_step.target_value # Fallback to default target value in step
+	
+	return result
+
 
 
 func _hide_parent() -> void:
