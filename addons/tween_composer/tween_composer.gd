@@ -359,9 +359,9 @@ func _resolve_expression(tw_step: TweenStepItem) -> Variant:
 		return tw_step.target_value # Fallback to default target value in step
 	
 	var expression: Expression = Expression.new()
-	expression.parse(text, ["parent"])
+	expression.parse(text, ["parent", "initial"])
 	
-	var result: Variant = expression.execute([parent_object])
+	var result: Variant = expression.execute([parent_object, _initial_values])
 	if expression.has_execute_failed():
 		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression execution failed!")
 		return tw_step.target_value # Fallback to default target value in step
