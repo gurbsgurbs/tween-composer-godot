@@ -9,6 +9,9 @@ extends Resource
 ## It's a list of popular options, that can grow over time as needed.
 enum TweenOptions { POSITION, ROTATION, SCALE, MODULATE, OTHER }
 
+## TODO
+enum ValueSource { VALUE, EXPRESSION }
+
 ## The dictionary that contains the peculiarities of each of the options on [TweenOptions].
 const PROPERTY_RULES: Dictionary = {
 	TweenOptions.POSITION: {"path": "position", "default": Vector3.ZERO, "type": TYPE_VECTOR3},
@@ -47,7 +50,10 @@ const PROPERTY_RULES: Dictionary = {
 @export var relative_value: bool = true ## Is the property's value change absolute ("move to position 100 on X") or relative ("move by 100 pixels to the right")
 
 var property_name: String
+
 var target_value: Variant = 0.0
+
+var expression_text: String = ""
 
 ## What property will be changed in this tween step.
 @export var tween_property: TweenOptions:
@@ -63,6 +69,12 @@ var target_value: Variant = 0.0
 			property_name = rule.path
 			target_value = type_convert(rule.default, rule.type)
 		notify_property_list_changed() # Update the inspector UI
+
+## TODO
+@export var value_source: ValueSource = ValueSource.VALUE:
+	set(value):
+		value_source = value
+		notify_property_list_changed()
 
 
 var custom_property: String = "position:x":
@@ -107,22 +119,30 @@ func _get_property_list() -> Array:
 		properties.append({
 			"name": "custom_property_type",
 			"type": TYPE_INT,
-			"hint": PROPERTY_HINT_ENUM, #Using the 
+			"hint": PROPERTY_HINT_ENUM, #Using the different property types from the engine
 			"hint_string": "Float:3,Int:2,Vector2:5,Vector3:9,Color:20,Bool:1",
 			"usage": PROPERTY_USAGE_DEFAULT
 		})
 		
-	# Set the proper type depending on option picked
+	# Set the proper type for the value field depending on option picked
 	var property_type: int
 	if tween_property == TweenOptions.OTHER:
 		property_type = custom_property_type
 	else:
 		property_type = PROPERTY_RULES[tween_property].type
 	
-	properties.append({
-		"name": "target_value",
-		"type": property_type,
-		"usage": PROPERTY_USAGE_DEFAULT
-	})
+	match value_source:
+		ValueSource.VALUE:
+			properties.append({
+				"name": "target_value",
+				"type": property_type,
+				"usage": PROPERTY_USAGE_DEFAULT
+			})
+		ValueSource.EXPRESSION:
+			properties.append({
+				"name": "expression_text",
+				"type": TYPE_STRING,
+				"usage": PROPERTY_USAGE_DEFAULT
+			})
 	
 	return properties

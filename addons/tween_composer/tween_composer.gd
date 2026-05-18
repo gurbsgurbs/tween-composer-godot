@@ -198,7 +198,6 @@ func _compose_tween() -> void:
 		elif (parent_object is CollisionObject2D or parent_object is CollisionObject3D) and tw_step.tween_property == tw_step.TweenOptions.SCALE:
 			push_error(tween_sequence.tween_steps.resource_name + ": Changes to the Scale property in PhysicsBody objects may lead to unexpected results or even be overridden")
 		
-		
 		# Basic tween setup
 		tween.set_trans(tw_step.transition)
 		tween.set_ease(tw_step.easing)
@@ -207,7 +206,6 @@ func _compose_tween() -> void:
 		var is_relative: bool = false
 		if tw_step.relative_value == true:
 			is_relative = true
-		
 		
 		# Formatting the values depending on parent Node type and property tweened
 		var target_value_formatted = tw_step.target_value
