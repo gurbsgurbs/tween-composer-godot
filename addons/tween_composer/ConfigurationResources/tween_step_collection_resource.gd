@@ -14,12 +14,7 @@ extends Resource
 		return tween_name
 
 # Making sure the resources in the array are not linked
-@export var step_collection: Array[TweenStepItem]= []:
-	set(value):
-		step_collection = value
-		for item in step_collection:
-			if item:
-				item = item.duplicate()
+@export var step_collection: Array[TweenStepItem]= []
 
 # Making sure the resource and it's sub-resources are unique
 func _init() -> void:

@@ -58,7 +58,7 @@ signal trigger_fired(trigger_name)
 
 @export_group("Parent settings")
 
-## Sets if the parent entity will be hidden before the tween animatio begins. [br]
+## Sets if the parent entity will be hidden before the tween animation begins. [br]
 ## Useful if the tween has an intro animation (fade-in, scale from zero, etc.).
 @export var hide_parent_before_tween_start: bool = false
 
@@ -134,7 +134,8 @@ func _exit_tree() -> void:
 ## the tween animation. Will not play the animation at the end (use [method play_tween] to do so).
 func _compose_tween() -> void:
 	
-	_is_tween_config_valid()
+	if _is_tween_config_valid() == false:
+		return
 	
 	var tw_steps = tween_sequence.tween_steps.step_collection
 
@@ -192,10 +193,10 @@ func _compose_tween() -> void:
 		
 		# Warnings:
 		if parent_object is Node3D and tw_step.tween_property == tw_step.TweenOptions.MODULATE:
-			push_error(tween_sequence.tween_steps.resource_name + "Node3D does not support 'modulate'. Use 'Other' to target a material property.")
+			push_error(tween_sequence.tween_steps.resource_name + ": Node3D does not support 'modulate'. Use 'Other' to target a material property.")
 			continue
 		elif (parent_object is CollisionObject2D or parent_object is CollisionObject3D) and tw_step.tween_property == tw_step.TweenOptions.SCALE:
-			push_error(tween_sequence.tween_steps.resource_name + "Changes to the Scale property in PhysicsBody objects may lead to unexpected results or even be overridden")
+			push_error(tween_sequence.tween_steps.resource_name + ": Changes to the Scale property in PhysicsBody objects may lead to unexpected results or even be overridden")
 		
 		
 		# Basic tween setup
@@ -216,7 +217,7 @@ func _compose_tween() -> void:
 			if tw_step.tween_property == tw_step.TweenOptions.ROTATION:
 				target_value_formatted = target_value_formatted.x
 			# Transform  Vector3 to Vector2 if 2D
-			elif tw_step.tween_property == tw_step.TweenOptions.POSITION or tw_step.tween_property == tw_step.TweenOptions.SCALE and target_value_formatted is Vector3:
+			elif tw_step.tween_property == tw_step.TweenOptions.POSITION or (tw_step.tween_property == tw_step.TweenOptions.SCALE and target_value_formatted is Vector3):
 				target_value_formatted = Vector2(target_value_formatted.x, target_value_formatted.y)
 		
 		
