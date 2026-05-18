@@ -9,6 +9,11 @@ extends Resource
 ## It's a list of popular options, that can grow over time as needed.
 enum TweenOptions { POSITION, ROTATION, SCALE, MODULATE, OTHER }
 
+## The different ways to calculate the value. [br]
+## * VALUE: The default way: Input the desired value (make sure to pick the correct type if OTHER is selected. [br]
+## * EXPRESSION: Write expressions to calculate the value, use random, or call variables.
+enum ValueSource { VALUE, EXPRESSION }
+
 ## The dictionary that contains the peculiarities of each of the options on [TweenOptions].
 const PROPERTY_RULES: Dictionary = {
 	TweenOptions.POSITION: {"path": "position", "default": Vector3.ZERO, "type": TYPE_VECTOR3},
@@ -30,7 +35,7 @@ const PROPERTY_RULES: Dictionary = {
 		return step_name
 
 ## If false, disables this step when composing the tween in the [TweenComposer]. [br]
-## Useful for creating the animation and testing things out without having to delete a step.
+## Useful for testing things out without having to delete a step.
 @export var active: bool = true
 
 @export_group("Tween parameters")
@@ -47,7 +52,10 @@ const PROPERTY_RULES: Dictionary = {
 @export var relative_value: bool = true ## Is the property's value change absolute ("move to position 100 on X") or relative ("move by 100 pixels to the right")
 
 var property_name: String
+
 var target_value: Variant = 0.0
+
+var expression_text: String = ""
 
 ## What property will be changed in this tween step.
 @export var tween_property: TweenOptions:
@@ -63,6 +71,21 @@ var target_value: Variant = 0.0
 			property_name = rule.path
 			target_value = type_convert(rule.default, rule.type)
 		notify_property_list_changed() # Update the inspector UI
+
+## Use [code]Value[/code] for the default way of setting a value. [br]
+## Use [code]Expression[/code] to calculate the value. You can: [br]
+## * Use random methods (e.g. [code]randf_range(-100,100)[/code]) [br]
+## * Call variables declared in the parent node using "parent" (e.g. [code]parent.some_variable[/code]) [br]
+## * Call initial values using "initial" (e.g. [code]initial.position[/code] ) [br]
+## Just make sure to properly use the type, either when picking a property from the dropdown 
+## or by picking the "Other"  Examples: [br]
+## * Position 2D: Vector2, [code]Vector2(randf_range(-10,10),10)[/code] [br]
+## * Initial color: Color, [code]initial.modulate[/code] [br]
+## * Parent damage value: int, [code]parent.damage_value[/code]
+@export var value_source: ValueSource = ValueSource.VALUE:
+	set(value):
+		value_source = value
+		notify_property_list_changed()
 
 
 var custom_property: String = "position:x":
@@ -107,22 +130,35 @@ func _get_property_list() -> Array:
 		properties.append({
 			"name": "custom_property_type",
 			"type": TYPE_INT,
-			"hint": PROPERTY_HINT_ENUM, #Using the 
+			"hint": PROPERTY_HINT_ENUM, #Using the different property types from the engine
 			"hint_string": "Float:3,Int:2,Vector2:5,Vector3:9,Color:20,Bool:1",
 			"usage": PROPERTY_USAGE_DEFAULT
 		})
 		
-	# Set the proper type depending on option picked
+	# Set the proper type for the value field depending on option picked
 	var property_type: int
 	if tween_property == TweenOptions.OTHER:
 		property_type = custom_property_type
 	else:
 		property_type = PROPERTY_RULES[tween_property].type
 	
-	properties.append({
-		"name": "target_value",
-		"type": property_type,
-		"usage": PROPERTY_USAGE_DEFAULT
-	})
+	match value_source:
+		ValueSource.VALUE:
+			properties.append({
+				"name": "target_value",
+				"type": property_type,
+				"usage": PROPERTY_USAGE_DEFAULT
+			})
+		ValueSource.EXPRESSION:
+			properties.append({
+				"name": "expression_text",
+				"type": TYPE_STRING,
+				"usage": PROPERTY_USAGE_DEFAULT
+			})
+			properties.append({
+				"name": "target_value", #Added due to fallback if expression fails. Not sure if needed.
+				"type": property_type,
+				"usage": PROPERTY_USAGE_STORAGE
+			})
 	
 	return properties
