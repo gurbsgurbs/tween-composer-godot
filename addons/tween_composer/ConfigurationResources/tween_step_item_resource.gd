@@ -9,7 +9,9 @@ extends Resource
 ## It's a list of popular options, that can grow over time as needed.
 enum TweenOptions { POSITION, ROTATION, SCALE, MODULATE, OTHER }
 
-## TODO
+## The different ways to calculate the value. [br]
+## * VALUE: The default way: Input the desired value (make sure to pick the correct type if OTHER is selected. [br]
+## * EXPRESSION: Write expressions to calculate the value, use random, or call variables.
 enum ValueSource { VALUE, EXPRESSION }
 
 ## The dictionary that contains the peculiarities of each of the options on [TweenOptions].
@@ -33,7 +35,7 @@ const PROPERTY_RULES: Dictionary = {
 		return step_name
 
 ## If false, disables this step when composing the tween in the [TweenComposer]. [br]
-## Useful for creating the animation and testing things out without having to delete a step.
+## Useful for testing things out without having to delete a step.
 @export var active: bool = true
 
 @export_group("Tween parameters")
@@ -70,7 +72,16 @@ var expression_text: String = ""
 			target_value = type_convert(rule.default, rule.type)
 		notify_property_list_changed() # Update the inspector UI
 
-## TODO
+## Use [code]Value[/code] for the default way of setting a value. [br]
+## Use [code]Expression[/code] to calculate the value. You can: [br]
+## * Use random methods (e.g. [code]randf_range(-100,100)[/code]) [br]
+## * Call variables declared in the parent node using "parent" (e.g. [code]parent.some_variable[/code]) [br]
+## * Call initial values using "initial" (e.g. [code]initial.position[/code] ) [br]
+## Just make sure to properly use the type, either when picking a property from the dropdown 
+## or by picking the "Other"  Examples: [br]
+## * Position 2D: Vector2, [code]Vector2(randf_range(-10,10),10)[/code] [br]
+## * Initial color: Color, [code]initial.modulate[/code] [br]
+## * Parent damage value: int, [code]parent.damage_value[/code]
 @export var value_source: ValueSource = ValueSource.VALUE:
 	set(value):
 		value_source = value
@@ -145,7 +156,7 @@ func _get_property_list() -> Array:
 				"usage": PROPERTY_USAGE_DEFAULT
 			})
 			properties.append({
-				"name": "target_value", #Added due to fallback if expression fails. #TODO: Not sure if needed.
+				"name": "target_value", #Added due to fallback if expression fails. Not sure if needed.
 				"type": property_type,
 				"usage": PROPERTY_USAGE_STORAGE
 			})
