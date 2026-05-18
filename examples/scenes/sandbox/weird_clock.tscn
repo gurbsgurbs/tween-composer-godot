@@ -24,7 +24,9 @@ metadata/_snap_count = 2
 
 [sub_resource type="Resource" id="Resource_bq5eh"]
 resource_local_to_scene = true
+resource_name = "Rotate 180"
 script = ExtResource("6_map53")
+step_name = "Rotate 180"
 transition = 2
 easing = 2
 tween_property = 1
@@ -98,7 +100,9 @@ metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 
 [sub_resource type="Resource" id="Resource_571ib"]
 resource_local_to_scene = true
+resource_name = "Rotate 36"
 script = ExtResource("6_map53")
+step_name = "Rotate 36"
 transition = 5
 easing = 2
 tween_property = 1
