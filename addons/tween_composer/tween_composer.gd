@@ -139,6 +139,7 @@ func _compose_tween() -> void:
 	
 	var tw_steps = tween_sequence.tween_steps.step_collection
 
+
 	# Calculate the duration of tween(s)
 	
 	## The sum of all duration ratios of non-parallel steps. Used to calculate the different timing of each step in the tween animation.
@@ -154,6 +155,7 @@ func _compose_tween() -> void:
 		if tw_step.parallel == false:
 			duration_ratio_total += tw_step.duration_ratio
 	
+	
 	# Crash prevention if all steps are parallel (or all their ratios are 0)
 	if duration_ratio_total <= 0:
 		push_warning(tween_sequence.tween_steps.resource_name + ": Total duration ratio = 0. Using 1.0 to avoid division by zero. It's likely that all steps are set to parallel.")
@@ -164,6 +166,7 @@ func _compose_tween() -> void:
 	if tween:
 		tween.kill()
 	_initial_values = {}
+	
 	
 	# Initial setup of tween parameters
 	tween = create_tween()
@@ -181,7 +184,7 @@ func _compose_tween() -> void:
 	
 	
 	# Creating the tweens by getting values from tween array.
-	# (The big FOR loop starts here)
+	# (The big loop starts here)
 	for tw_step in tw_steps:
 		
 		if !tw_step.active:
@@ -356,10 +359,9 @@ func _resolve_expression(tw_step: TweenStepItem) -> Variant:
 		return tw_step.target_value # Fallback to default target value in step
 	
 	var expression: Expression = Expression.new()
-	expression.parse(text)
+	expression.parse(text, ["parent"])
 	
-	var result: Variant = expression.execute()
-	
+	var result: Variant = expression.execute([parent_object])
 	if expression.has_execute_failed():
 		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression execution failed!")
 		return tw_step.target_value # Fallback to default target value in step
