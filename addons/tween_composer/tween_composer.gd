@@ -12,7 +12,6 @@ extends Node
 ## or to load different animations into the same one.
 ## [br][br]
 ##
-## TODO: Preview in editor: Now that reset_tween is done, this should be doable.
 ## BUG: Known issue: Parallel and delayed tween property if it is a relative as well (currently throws an error to warn the user)
 ## 
 
@@ -221,10 +220,10 @@ func _compose_tween() -> void:
 		# Formatting the value depending on parent Node type and property tweened
 		if parent_object is Node2D or parent_object is Control:
 			# Only get 1 rotation axis if 2D
-			if tw_step.tween_property == tw_step.TweenOptions.ROTATION:
+			if tw_step.tween_property == tw_step.TweenOptions.ROTATION and target_value_formatted is Vector3:
 				target_value_formatted = target_value_formatted.x
 			# Transform  Vector3 to Vector2 if 2D
-			elif tw_step.tween_property == tw_step.TweenOptions.POSITION or (tw_step.tween_property == tw_step.TweenOptions.SCALE and target_value_formatted is Vector3):
+			elif (tw_step.tween_property == tw_step.TweenOptions.POSITION or tw_step.tween_property == tw_step.TweenOptions.SCALE) and target_value_formatted is Vector3:
 				target_value_formatted = Vector2(target_value_formatted.x, target_value_formatted.y)
 		
 		
@@ -402,6 +401,3 @@ func _on_tween_finished() -> void:
 		_delete_parent_entity()
 
 #endregion
-
-
-#region Editor functions
