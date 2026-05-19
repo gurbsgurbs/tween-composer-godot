@@ -229,8 +229,6 @@ func _compose_tween() -> void:
 		
 		# Constructing the tween property
 		var tw_property = tween.tween_property(parent_object, tw_step.property_name, target_value_formatted, tween_sequence.tween_duration * (tw_step.duration_ratio / duration_ratio_total))
-		print(tw_step.property_name)
-		print(target_value_formatted)
 		if is_relative:
 			tw_property.as_relative()
 		if tw_step.duration_delay > 0.0:
