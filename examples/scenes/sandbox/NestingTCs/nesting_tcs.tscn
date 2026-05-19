@@ -120,7 +120,7 @@ metadata/_custom_type_script = "uid://b2cnshkmciixf"
 [sub_resource type="Resource" id="Resource_5fa8m"]
 script = ExtResource("4_hs3qy")
 tween_steps = SubResource("Resource_blwwx")
-tween_duration = 10.0
+tween_duration = 6.0
 metadata/_custom_type_script = "uid://daxe4s6rqjw57"
 
 [node name="NestingTCs" type="Node2D" unique_id=2033632311]

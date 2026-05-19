@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://cj7mgdj64lpss"]
+
+[ext_resource type="Script" uid="uid://dj0a5n63wjpx3" path="res://examples/scenes/sandbox/UsingExpressions/using_expressions.gd" id="1_7i4v5"]
+[ext_resource type="Texture2D" uid="uid://cwbnr3ay5hw7t" path="res://examples/assets/shapes/shape_128_hexagon_r_o.png" id="1_f2gs4"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="2_7i4v5"]
+[ext_resource type="Script" uid="uid://daxe4s6rqjw57" path="res://addons/tween_composer/ConfigurationResources/tween_sequence_resource.gd" id="3_1me1a"]
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_step_collection_resource.gd" id="4_5ptj1"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_step_item_resource.gd" id="5_u6djl"]
+
+[sub_resource type="Resource" id="Resource_nohf8"]
+resource_local_to_scene = true
+script = ExtResource("5_u6djl")
+transition = 5
+easing = 2
+tween_property = 4
+property_name = "position:x"
+custom_property = "position:x"
+custom_property_type = 3
+target_value = 256.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_xu6df"]
+resource_local_to_scene = true
+script = ExtResource("5_u6djl")
+transition = 1
+easing = 2
+tween_property = 4
+property_name = "position:x"
+custom_property = "position:x"
+custom_property_type = 3
+target_value = -256.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_ua6va"]
+resource_local_to_scene = true
+script = ExtResource("4_5ptj1")
+step_collection = Array[ExtResource("5_u6djl")]([SubResource("Resource_nohf8"), SubResource("Resource_xu6df")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="Resource" id="Resource_deayx"]
+script = ExtResource("3_1me1a")
+tween_steps = SubResource("Resource_ua6va")
+tween_duration = 4.0
+metadata/_custom_type_script = "uid://daxe4s6rqjw57"
+
+[node name="StressTestingStuff" type="Node2D" unique_id=91322692]
+script = ExtResource("1_7i4v5")
+
+[node name="Button" type="Button" parent="." unique_id=27360131]
+offset_left = 352.0
+offset_top = 480.0
+offset_right = 433.0
+offset_bottom = 511.0
+text = "DAMAGE!"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1545999889]
+position = Vector2(400, 336)
+texture = ExtResource("1_f2gs4")
+
+[node name="TweenComposer" type="Node" parent="Sprite2D" unique_id=1727468219]
+script = ExtResource("2_7i4v5")
+tween_sequence = SubResource("Resource_deayx")
+metadata/_custom_type_script = "uid://bepnihd7w544x"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

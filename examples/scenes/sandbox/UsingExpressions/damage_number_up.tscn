@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://doi63xjp1hjv5"]
+
+[ext_resource type="FontFile" uid="uid://d2niivc3nbgut" path="res://examples/assets/font/Nunito-VariableFont_wght.ttf" id="1_asthr"]
+[ext_resource type="Script" uid="uid://bqhow0h00e2wr" path="res://examples/scenes/sandbox/UsingExpressions/damage_number_up.gd" id="1_fni11"]
+[ext_resource type="Script" uid="uid://bepnihd7w544x" path="res://addons/tween_composer/tween_composer.gd" id="2_fni11"]
+[ext_resource type="Script" uid="uid://daxe4s6rqjw57" path="res://addons/tween_composer/ConfigurationResources/tween_sequence_resource.gd" id="3_ip82t"]
+[ext_resource type="Script" uid="uid://b2cnshkmciixf" path="res://addons/tween_composer/ConfigurationResources/tween_step_collection_resource.gd" id="4_k7fjh"]
+[ext_resource type="Script" uid="uid://bq7aba2n0qrym" path="res://addons/tween_composer/ConfigurationResources/tween_step_item_resource.gd" id="5_775ck"]
+
+[sub_resource type="FontVariation" id="FontVariation_ovd21"]
+base_font = ExtResource("1_asthr")
+variation_opentype = {
+2003265652: 700
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_jwdmm"]
+line_spacing = 0.0
+paragraph_spacing = 8.0
+font = SubResource("FontVariation_ovd21")
+font_size = 24
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1g7ir"]
+resource_local_to_scene = true
+resource_name = "Up"
+script = ExtResource("5_775ck")
+step_name = "Up"
+easing = 1
+tween_property = 4
+value_source = 1
+property_name = "position:y"
+custom_property = "position:y"
+custom_property_type = 3
+expression_text = "randi_range(-50,-100)"
+target_value = -100.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_jk6lj"]
+resource_local_to_scene = true
+resource_name = "Side"
+script = ExtResource("5_775ck")
+step_name = "Side"
+easing = 1
+parallel = true
+tween_property = 4
+value_source = 1
+property_name = "position:x"
+custom_property = "position:x"
+custom_property_type = 3
+expression_text = "randi_range(-50,50)"
+target_value = 0.0
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_fni11"]
+resource_local_to_scene = true
+resource_name = "Rotation"
+script = ExtResource("5_775ck")
+step_name = "Rotation"
+transition = 10
+easing = 1
+parallel = true
+tween_property = 1
+value_source = 1
+property_name = "rotation_degrees"
+expression_text = "randi_range(-20,20)"
+target_value = Vector3(-10, 0, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_6nevg"]
+resource_local_to_scene = true
+resource_name = "Fade"
+script = ExtResource("5_775ck")
+step_name = "Fade"
+duration_ratio = 0.5
+relative_value = false
+tween_property = 3
+property_name = "modulate"
+target_value = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://bq7aba2n0qrym"
+
+[sub_resource type="Resource" id="Resource_y1pw1"]
+resource_local_to_scene = true
+script = ExtResource("4_k7fjh")
+step_collection = Array[ExtResource("5_775ck")]([SubResource("Resource_1g7ir"), SubResource("Resource_jk6lj"), SubResource("Resource_fni11"), SubResource("Resource_6nevg")])
+metadata/_custom_type_script = "uid://b2cnshkmciixf"
+
+[sub_resource type="Resource" id="Resource_mclh3"]
+script = ExtResource("3_ip82t")
+tween_steps = SubResource("Resource_y1pw1")
+loop = false
+metadata/_custom_type_script = "uid://daxe4s6rqjw57"
+
+[node name="DamageNumberUp" type="Node2D" unique_id=776570197]
+script = ExtResource("1_fni11")
+
+[node name="Label" type="Label" parent="." unique_id=291594939]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -17.0
+offset_right = 29.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "+100"
+label_settings = SubResource("LabelSettings_jwdmm")
+horizontal_alignment = 1
+
+[node name="TweenComposer" type="Node" parent="." unique_id=1944922774]
+script = ExtResource("2_fni11")
+tween_sequence = SubResource("Resource_mclh3")
+metadata/_custom_type_script = "uid://bepnihd7w544x"
