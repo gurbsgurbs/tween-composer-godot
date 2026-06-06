@@ -25,13 +25,31 @@ Head to the itch.io page for more updates: https://gurbsgurbs.itch.io/tween-comp
 ## How to Use
 Tween Composer works with `Node2D`, `Node3D` and `Control` nodes, but it can be used in virtually any node that needs tweens.
 
-To animate an object:
+### To animate an object:
 1. Attach TweenComposer as its child.
-2. Use the inspector to create a new set of tween steps, and set the tween properties for duration, loops, etc.
+2. Use the inspector to create a new Sequence, with a set of tween steps, and set the tween properties for duration, loops, etc.
 
-Tween Composer uses two resources to work:
-- **TweenConfigStep**: A set of instructions for a tween step (what property, transition type, easing, etc)
-- **TweenConfigCollection**: An array of tween steps that will be used to compose your animation. This can be saved and reused.
+#### To use expressions:
+<details>
+  <summary>Using expressions</summary>
+
+* In the step configurations, set  the Value Source to `Expression`.
+
+With expressions you can:
+* Use random values: e.g. randf_range(-100,100)
+* Use the value from variables declared in the parent node, using `parent`. e.g. `parent.some_variable`
+* Call initial values using `initial`. e.g. `initial.position`
+The expression input works for the pre-defined properties in the dropdown (position, rotation etc) as well as the "Other" option.
+
+⚠️ Pay extra attendtion:
+Use the proper type when writing your expression, or you'll get errors or unexpected behaviors.
+
+Some other expression examples:
+
+* For using a random value in a Position 2D: `Vector2(randf_range(-10,10),10)`
+* For tweening back to the initial Color of a sprite: `initial.modulate`
+* For scaling up a "damage number" label, based on the damage value: `Vector2(clampf(remap(parent.damage_amount, 0.0, 1000.0, 1.0, 2.0), 1.0, 2.0)` (scale will proportionally double if the damage is between 0 to 1000).
+</details>
 
 ## Installation
 You can find Tween Composer in the Asset Library inside Godot.
