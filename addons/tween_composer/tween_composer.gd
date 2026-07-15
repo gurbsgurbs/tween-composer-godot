@@ -94,6 +94,9 @@ func _ready() -> void:
 	# Get parent
 	parent_object = get_parent()
 	
+	if _is_parent_valid() == false:
+		return
+	
 	# Stop function if code is running in the editor
 	if Engine.is_editor_hint():
 		return
@@ -127,8 +130,6 @@ func _exit_tree() -> void:
 	_kill_tween()
 
 
-#region Compose
-
 ## The main function of Tween Composer. Iterates through all the configuration resources to compose 
 ## the tween animation. Will not play the animation at the end (use [method play_tween] to do so).
 func _compose_tween() -> void:
@@ -136,8 +137,11 @@ func _compose_tween() -> void:
 	if _is_tween_config_valid() == false:
 		return
 	
+	if _is_parent_valid() == false:
+		return
+	
+	
 	var tw_steps = tween_sequence.tween_steps.step_collection
-
 
 	# Calculate the duration of tween(s)
 	
@@ -266,13 +270,13 @@ func load_tween_sequence_and_start(new_resource: TweenSequence) -> void:
 	play_tween()
 
 
-## Loads a new [TweenStepCollection] resource, while keeping the [TweenSequence]'s other settings intact.
+## Loads a new [TweenStepCollection] resource, while keeping the [TweenSequence]'s settings intact.
 func load_tween_steps(config:TweenStepCollection) -> void:
 	reset_tween()
 	tween_sequence.tween_steps = config
 	_compose_tween()
 
-## Loads a new [TweenStepCollection] resource, while keeping the [TweenSequence]'s other settings intact. [br]
+## Loads a new [TweenStepCollection] resource, while keeping the [TweenSequence]'s settings intact. [br]
 ## Starts the tween animation after loading.
 func load_tween_steps_and_start(config:TweenStepCollection) -> void:
 	reset_tween()
@@ -337,6 +341,7 @@ func _is_tween_valid() -> bool:
 	else:
 		return false
 
+
 func _is_tween_config_valid() -> bool:
 	# Safety checks and warnings
 	if tween_sequence.tween_steps == null:
@@ -347,6 +352,15 @@ func _is_tween_config_valid() -> bool:
 		return false
 	else:
 		return true
+
+
+func _is_parent_valid() -> bool:
+	if parent_object == null:
+		return true
+	else:
+		push_warning("TweenComposer: Parent not found")
+		return false
+
 
 func _resolve_expression(tw_step: TweenStepItem) -> Variant:
 	var text: String = tw_step.expression_text
@@ -364,7 +378,6 @@ func _resolve_expression(tw_step: TweenStepItem) -> Variant:
 		return tw_step.target_value # Fallback to default target value in step
 	
 	return result
-
 
 
 func _hide_parent() -> void:
@@ -397,5 +410,6 @@ func _on_tween_finished() -> void:
 		tween.stop()
 	elif delete_parent_after_tween_end:
 		_delete_parent_entity()
+
 
 #endregion
