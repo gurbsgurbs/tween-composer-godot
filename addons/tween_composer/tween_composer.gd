@@ -354,31 +354,13 @@ func _is_tween_config_valid() -> bool:
 	else:
 		return true
 
-func _resolve_expression(tw_step: TweenStepItem) -> Variant:
-	var text: String = tw_step.expression_text
-	
-	if text.is_empty():
-		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression is empty!")
-		return tw_step.target_value # Fallback to default target value in step
-	
-	var expression: Expression = Expression.new()
-	expression.parse(text, ["parent", "initial"])
-	
-	var result: Variant = expression.execute([parent_object, _initial_values])
-	if expression.has_execute_failed():
-		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression execution failed!")
-		return tw_step.target_value # Fallback to default target value in step
-	
-	return result
-
-
 
 func _is_parent_valid() -> bool:
 	if parent_object == null:
-		return true
-	else:
-		push_warning("TweenComposer: Parent not found")
 		return false
+		push_warning("TweenComposer: Parent not found")
+	else:
+		return true
 
 
 func _resolve_expression(tw_step: TweenStepItem) -> Variant:
