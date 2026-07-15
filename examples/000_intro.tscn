@@ -105,6 +105,7 @@ text = "Tween Composer"
 label_settings = SubResource("LabelSettings_ieo45")
 
 [node name="Description" type="Label" parent="." unique_id=805527058]
+custom_minimum_size = Vector2(816, 0)
 layout_mode = 0
 offset_left = 32.0
 offset_top = 96.0
@@ -125,6 +126,7 @@ tween_sequence = ExtResource("5_vhnuo")
 metadata/_custom_type_script = "uid://bepnihd7w544x"
 
 [node name="Terminology" type="Label" parent="." unique_id=1373993509]
+custom_minimum_size = Vector2(640, 34)
 layout_mode = 0
 offset_left = 192.0
 offset_top = 208.0
