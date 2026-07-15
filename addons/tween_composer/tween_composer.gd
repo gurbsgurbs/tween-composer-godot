@@ -143,6 +143,7 @@ func _compose_tween() -> void:
 	
 	var tw_steps = tween_sequence.tween_steps.step_collection
 
+
 	# Calculate the duration of tween(s)
 	
 	## The sum of all duration ratios of non-parallel steps. Used to calculate the different timing of each step in the tween animation.
@@ -352,6 +353,24 @@ func _is_tween_config_valid() -> bool:
 		return false
 	else:
 		return true
+
+func _resolve_expression(tw_step: TweenStepItem) -> Variant:
+	var text: String = tw_step.expression_text
+	
+	if text.is_empty():
+		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression is empty!")
+		return tw_step.target_value # Fallback to default target value in step
+	
+	var expression: Expression = Expression.new()
+	expression.parse(text, ["parent", "initial"])
+	
+	var result: Variant = expression.execute([parent_object, _initial_values])
+	if expression.has_execute_failed():
+		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression execution failed!")
+		return tw_step.target_value # Fallback to default target value in step
+	
+	return result
+
 
 
 func _is_parent_valid() -> bool:
