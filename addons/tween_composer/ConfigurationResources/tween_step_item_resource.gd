@@ -112,7 +112,7 @@ func _init() -> void:
 
 # Draws the dynamic variables in the inspector
 func _get_property_list() -> Array[Dictionary]:
-	var properties = []
+	var properties: Array[Dictionary] = []
 	
 	# Must add property_name to storage so it isn't lost, because it's not an @export variable.
 	properties.append({
