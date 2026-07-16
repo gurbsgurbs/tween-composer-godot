@@ -40,6 +40,11 @@ signal trigger_fired(trigger_name)
 ## BUG: Known issue: Saving the scene while preview is running will alter the values of the parent entity!
 @export var preview: bool = false:
 	set(value):
+		## Safeguard: Preview is editor-only! Ignore true value it at runtime (and scene load).
+		#if not Engine.is_editor_hint() or not is_node_ready():
+			#preview = false
+			#return
+		
 		preview = value
 		
 		if preview == true:
@@ -412,5 +417,16 @@ func _on_tween_finished() -> void:
 	elif delete_parent_after_tween_end:
 		_delete_parent_entity()
 
+
+func _validate_property(property: Dictionary) -> void:
+	# Safeguard against preview left ON and running the game.
+	if property.name == "preview":
+		property.usage &= ~PROPERTY_USAGE_STORAGE # tilde to remove a flag, that's new for me!
+
+func _notification(what: int) -> void:
+	# Safeguard against preview being on when saving a project (could lead to modified values being saved)
+	if what == NOTIFICATION_EDITOR_PRE_SAVE:
+		if preview == true:
+			preview = false
 
 #endregion
