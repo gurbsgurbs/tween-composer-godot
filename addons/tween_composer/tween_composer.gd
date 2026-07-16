@@ -37,7 +37,6 @@ signal trigger_fired(trigger_name)
 @export_subgroup("Preview")
 
 ## Toggle this on to preview the animation on the editor.
-## BUG: Known issue: Saving the scene while preview is running will alter the values of the parent entity!
 @export var preview: bool = false:
 	set(value):
 		## Safeguard: Preview is editor-only! Ignore true value it at runtime (and scene load).
