@@ -50,12 +50,17 @@ const PROPERTY_RULES: Dictionary = {
 
 @export_group("Tween Property")
 @export var relative_value: bool = true ## Is the property's value change absolute ("move to position 100 on X") or relative ("move by 100 pixels to the right")
-
+@export var override_initial_value : bool = false: ## ## Determines whether the property's initial value should be explicitly overridden before this tween step begins.
+	set(value):
+		override_initial_value = value
+		notify_property_list_changed() # Update the inspector UI
 var property_name: String
 
 var target_value: Variant = 0.0
+var start_value: Variant = 0.0
 
 var expression_text: String = ""
+var start_expression_text: String = "" 
 
 ## What property will be changed in this tween step.
 @export var tween_property: TweenOptions:
@@ -67,9 +72,11 @@ var expression_text: String = ""
 		if value == TweenOptions.OTHER:
 			property_name = custom_property
 			target_value = type_convert(target_value, custom_property_type)
+			start_value =  type_convert(start_value, custom_property_type)
 		else:
 			property_name = rule.path
 			target_value = type_convert(rule.default, rule.type)
+			start_value = type_convert(rule.default, rule.type)
 		notify_property_list_changed() # Update the inspector UI
 
 ## Use [code]Value[/code] for the default way of setting a value. [br]
@@ -100,6 +107,7 @@ var custom_property_type: int = TYPE_FLOAT:
 	set(value):
 		custom_property_type = value
 		target_value = type_convert(target_value, value)
+		start_value = type_convert(start_value, value)
 		notify_property_list_changed() # Update the inspector UI
 
 
@@ -161,4 +169,23 @@ func _get_property_list() -> Array[Dictionary]:
 				"usage": PROPERTY_USAGE_STORAGE
 			})
 	
+	if override_initial_value:
+		match value_source:
+			ValueSource.VALUE:
+				properties.append({
+					"name": "start_value",
+					"type": property_type,
+					"usage": PROPERTY_USAGE_DEFAULT
+				})
+			ValueSource.EXPRESSION:
+				properties.append({
+					"name": "start_expression_text",
+					"type": TYPE_STRING,
+					"usage": PROPERTY_USAGE_DEFAULT
+				})
+				properties.append({
+					"name": "start_value", #Added due to fallback if expression fails. Not sure if needed.
+					"type": property_type,
+					"usage": PROPERTY_USAGE_STORAGE
+				})
 	return properties
