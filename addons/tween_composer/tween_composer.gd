@@ -40,14 +40,16 @@ signal trigger_fired(trigger_name)
 @export var preview: bool = false:
 	set(value):
 		## Safeguard: Preview is editor-only! Ignore true value it at runtime (and scene load).
-		#if not Engine.is_editor_hint() or not is_node_ready():
-			#preview = false
-			#return
-		
+		if not Engine.is_editor_hint() or not is_node_ready():
+			preview = false
+			return
+
 		preview = value
-		
+
 		if preview == true:
-			if tween_sequence.tween_steps != null:
+			if tween_sequence == null:
+				push_warning(str(parent_object.name) + ": Can't preview tween, no TweenSequence set.")
+			elif tween_sequence.tween_steps != null:
 				_compose_tween()
 				play_tween()
 			else:
@@ -89,6 +91,12 @@ var tween: Tween
 
 ## A Dictionary that stores all the initial property values, to be restored if [method reset_tween] is called.
 var _initial_values: Dictionary
+
+## Set to true only when [TweenComposer] hid the parent, so [method _show_parent] doesn't override the user's visibility.
+var _is_parent_hidden_by_composer: bool = false
+
+## The parent's modulate before [method _hide_parent] made it transparent. Restored by [method _show_parent].
+var _parent_modulate_before_hiding: Color = Color.WHITE
 
 #endregion
 
@@ -138,14 +146,14 @@ func _exit_tree() -> void:
 ## the tween animation. Will not play the animation at the end (use [method play_tween] to do so).
 func _compose_tween() -> void:
 	
-	if _is_tween_config_valid() == false:
-		return
-	
 	if _is_parent_valid() == false:
 		return
-	
-	
-	var tw_steps = tween_sequence.tween_steps.step_collection
+
+	if _is_tween_config_valid() == false:
+		return
+
+
+	var tw_steps: Array[TweenStepItem] = tween_sequence.tween_steps.step_collection
 
 
 	# Calculate the duration of tween(s)
@@ -198,17 +206,17 @@ func _compose_tween() -> void:
 		if !tw_step.active:
 			continue
 		
-		# Saving initial value of property to _initial_values dictionary
-		if _initial_values.has(tw_step.property_name) == false: # Avoid duplicates, only get first value
-			_initial_values[tw_step.property_name] = parent_object.get_indexed(tw_step.property_name)
-		
 		# Warnings:
 		if parent_object is Node3D and tw_step.tween_property == tw_step.TweenOptions.MODULATE:
 			push_error(tween_sequence.tween_steps.resource_name + ": Node3D does not support 'modulate'. Use 'Other' to target a material property.")
 			continue
 		elif (parent_object is CollisionObject2D or parent_object is CollisionObject3D) and tw_step.tween_property == tw_step.TweenOptions.SCALE:
 			push_error(tween_sequence.tween_steps.resource_name + ": Changes to the Scale property in PhysicsBody objects may lead to unexpected results or even be overridden")
-		
+
+		# Saving initial value of property to _initial_values dictionary
+		if _initial_values.has(tw_step.property_name) == false: # Avoid duplicates, only get first value
+			_initial_values[tw_step.property_name] = parent_object.get_indexed(tw_step.property_name)
+
 		# Basic tween setup
 		tween.set_trans(tw_step.transition)
 		tween.set_ease(tw_step.easing)
@@ -237,7 +245,7 @@ func _compose_tween() -> void:
 		
 		
 		# Constructing the tween property
-		var tw_property = tween.tween_property(parent_object, tw_step.property_name, target_value_formatted, tween_sequence.tween_duration * (tw_step.duration_ratio / duration_ratio_total))
+		var tw_property: PropertyTweener = tween.tween_property(parent_object, tw_step.property_name, target_value_formatted, tween_sequence.tween_duration * (tw_step.duration_ratio / duration_ratio_total))
 		if is_relative:
 			tw_property.as_relative()
 		if tw_step.duration_delay > 0.0:
@@ -349,7 +357,10 @@ func _is_tween_valid() -> bool:
 
 func _is_tween_config_valid() -> bool:
 	# Safety checks and warnings
-	if tween_sequence.tween_steps == null:
+	if tween_sequence == null:
+		push_error(str(parent_object.name) + ": TweenComposer must have a TweenSequence file!")
+		return false
+	elif tween_sequence.tween_steps == null:
 		push_error(str(parent_object.name) + ": TweenComposer must have a TweenConfigCollection file!")
 		return false
 	elif tween_sequence.tween_steps.step_collection.size() == 0:
@@ -361,8 +372,8 @@ func _is_tween_config_valid() -> bool:
 
 func _is_parent_valid() -> bool:
 	if parent_object == null:
-		return false
 		push_warning("TweenComposer: Parent not found")
+		return false
 	else:
 		return true
 
@@ -388,17 +399,23 @@ func _resolve_expression(tw_step: TweenStepItem) -> Variant:
 func _hide_parent() -> void:
 	# INFO: Toggling "visible" in Control nodes can mess with the UI position, so the solution was to "turn invisible" instead.
 	if parent_object is Control:
-		parent_object.modulate = Color(1.0, 1.0, 1.0, 0.0)
+		_parent_modulate_before_hiding = parent_object.modulate
+		var transparent_modulate: Color = parent_object.modulate
+		transparent_modulate.a = 0.0
+		parent_object.modulate = transparent_modulate
 	else:
 		parent_object.hide()
+	_is_parent_hidden_by_composer = true
 
 
 func _show_parent() -> void:
-	# INFO: Toggling "visible" in Control nodes can mess with the UI position, so the solution was to "turn invisible" instead.
+	if _is_parent_hidden_by_composer == false:
+		return
 	if parent_object is Control:
-		parent_object.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		parent_object.modulate = _parent_modulate_before_hiding
 	else:
 		parent_object.show()
+	_is_parent_hidden_by_composer = false
 
 
 func _delete_parent_entity() -> void:
