@@ -231,21 +231,32 @@ func _compose_tween() -> void:
 		
 		# Getting proper values from either simple values or expressions:
 		var target_value_formatted: Variant
-		match  tw_step.value_source:
+		var start_value_formatted: Variant
+		match tw_step.value_source:
 			TweenStepItem.ValueSource.VALUE:
 				target_value_formatted = tw_step.target_value
+				if tw_step.override_initial_value:
+						start_value_formatted = tw_step.start_value
 			TweenStepItem.ValueSource.EXPRESSION:
 				target_value_formatted = _resolve_expression(tw_step)
+				if tw_step.override_initial_value:
+					start_value_formatted = _resolve_expression(tw_step,true)
 		
 		# Formatting the value depending on parent Node type and property tweened
 		if parent_object is Node2D or parent_object is Control:
 			# Only get 1 rotation axis if 2D
-			if tw_step.tween_property == tw_step.TweenOptions.ROTATION and target_value_formatted is Vector3:
-				target_value_formatted = target_value_formatted.x
+			if tw_step.tween_property == tw_step.TweenOptions.ROTATION:
+				if target_value_formatted is Vector3:
+					target_value_formatted = target_value_formatted.x
+				if tw_step.override_initial_value and start_value_formatted is Vector3:
+					start_value_formatted = start_value_formatted.x
 			# Transform  Vector3 to Vector2 if 2D
-			elif (tw_step.tween_property == tw_step.TweenOptions.POSITION or tw_step.tween_property == tw_step.TweenOptions.SCALE) and target_value_formatted is Vector3:
-				target_value_formatted = Vector2(target_value_formatted.x, target_value_formatted.y)
-		
+			elif (tw_step.tween_property == tw_step.TweenOptions.POSITION or 
+			tw_step.tween_property == tw_step.TweenOptions.SCALE):
+				if target_value_formatted is Vector3:
+					target_value_formatted = Vector2(target_value_formatted.x, target_value_formatted.y)
+				if tw_step.override_initial_value and start_value_formatted is Vector3:
+					start_value_formatted = Vector2(start_value_formatted.x, start_value_formatted.y)
 		
 		# Constructing the tween property
 		var tw_property: PropertyTweener = tween.tween_property(parent_object, tw_step.property_name, target_value_formatted, tween_sequence.tween_duration * (tw_step.duration_ratio / duration_ratio_total))
@@ -256,6 +267,9 @@ func _compose_tween() -> void:
 				push_error(tween_sequence.tween_steps.resource_name + ": TweenComposer currently doesn't support the combo of relative + parallel + delay")
 			else:
 				tw_property.set_delay(tween_sequence.tween_duration * (tw_step.duration_delay / duration_ratio_total))
+		
+		if tw_step.override_initial_value:
+			tw_property.from(start_value_formatted)
 			
 		for trigger in tw_step.send_triggers:
 			tween.tween_callback(
@@ -381,20 +395,20 @@ func _is_parent_valid() -> bool:
 		return true
 
 
-func _resolve_expression(tw_step: TweenStepItem) -> Variant:
-	var text: String = tw_step.expression_text
+func _resolve_expression(tw_step: TweenStepItem, start_expression := false) -> Variant:
+	var text: String = tw_step.start_expression_text if start_expression else tw_step.expression_text
 	
 	if text.is_empty():
-		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression is empty!")
-		return tw_step.target_value # Fallback to default target value in step
+		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": " + ("Start expression" if start_expression else "Expression") + " is empty!")
+		return tw_step.start_value if start_expression else tw_step.target_value # Fallback to default value in step
 	
 	var expression: Expression = Expression.new()
 	expression.parse(text, ["parent", "initial"])
 	
 	var result: Variant = expression.execute([parent_object, _initial_values])
 	if expression.has_execute_failed():
-		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": Expression execution failed!")
-		return tw_step.target_value # Fallback to default target value in step
+		push_error(tween_sequence.tween_steps.resource_name + " / " + tw_step.step_name + ": " + ("Start expression" if start_expression else "Expression") + " execution failed!")
+		return tw_step.start_value if start_expression else tw_step.target_value # Fallback to default value in step
 	
 	return result
 
