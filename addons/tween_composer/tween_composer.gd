@@ -216,6 +216,9 @@ func _compose_tween() -> void:
 		# Saving initial value of property to _initial_values dictionary
 		if _initial_values.has(tw_step.property_name) == false: # Avoid duplicates, only get first value
 			_initial_values[tw_step.property_name] = parent_object.get_indexed(tw_step.property_name)
+			# Hidden Controls are made transparent instead of hidden, so use the color saved before hiding.
+			if tw_step.property_name == "modulate" and parent_object is Control and _is_parent_hidden_by_composer:
+				_initial_values["modulate"] = _parent_modulate_before_hiding
 
 		# Basic tween setup
 		tween.set_trans(tw_step.transition)
